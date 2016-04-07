@@ -1,0 +1,29 @@
+<extend name="Public:common" />
+
+<block name="main">
+
+    <div id="index" class="wrap mb">
+        <include file="Public:slide_show"/>
+
+        <div id="indexLeft">
+            <if condition="$system_module['open']['product']">
+                <include file="recommend_product"/>
+            </if>
+            <include file="about"/>
+        </div>
+        <div id="indexRight">
+            <if condition="$system_module['open']['article']">
+                <include file="recommend_article"/>
+            </if>
+            <include file="contact"/>
+        </div>
+
+        <div class="clear"></div>
+    </div>
+    <if condition="$system_module['open']['link']">
+        <include file="Public:link"/>
+    </if>
+
+
+
+</block>

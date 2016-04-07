@@ -1,0 +1,36 @@
+<extend name="Public:common" />
+
+<block name="main">
+    <div class="mainBox">
+        <h3>{$ur_here}</h3>
+
+        <div id="list">
+            <form name="del" method="post" action="{:U('GuestBook/del_all')}">
+                <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+                    <tr>
+                        <th width="22" align="center"><input name='chkall' type='checkbox' id='chkall' onclick='selectcheckbox(this.form)' value='check'></th>
+                        <th align="left">{:L('guestbook_title')}</th>
+                        <th width="60" align="center">{:L('guestbook_name')}</th>
+                        <th width="80" align="center">{:L('add_time')}</th>
+                        <th width="60" align="center">{:L('if_show')}</th>
+                    </tr>
+
+                    <volist name="book_list" id="guestbook">
+                        <eq name="guestbook['if_read']" value="0"><tr class="unread"><else/><tr></eq>
+                        <td align="center"><input type="checkbox" name="checkbox[]" value="{$guestbook.id}" /></td>
+                        <td><a href="{:U('GuestBook/read',array('id' => $guestbook['id']))}">{$guestbook.title}</a></td>
+                        <td align="center">{$guestbook.name}</td>
+                        <td align="center">{$guestbook.add_time|date='Y-m-d',###}</td>
+                        <td align="center">{$guestbook.if_show}</td>
+                        </tr>
+                    </volist>
+                </table>
+                <div class="action"><input name="submit" class="btn" type="submit" value="{:L('del')}" /></div>
+            </form>
+        </div>
+        <div class="clear"></div>
+        <div class="pager">{$page}</div>
+
+
+    </div>
+</block>

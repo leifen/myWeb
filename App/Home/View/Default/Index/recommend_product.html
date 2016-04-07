@@ -1,0 +1,14 @@
+<if condition="$recommend_product">
+    <div class="incBox">
+        <h3><a href="{$system_module.product_category}">{:L('product_news')}</a></h3>
+        <ul class="recommendProduct">
+            <volist name="recommend_product" id="product" key="k">
+                <eq name="k" value="4"><li class="clearBorder"><else/> <li></eq>
+                    <p class="img"><a href="{$product.url}"><img src="{$product.thumb}" width="{$config.thumb_width}" height="{$config.thumb_height}" /></a></p>
+                    <p class="name"><a href="{$product.url}">{$product.name}</a></p>
+                    <p class="price">{$product.price}</p>
+                </li>
+            </volist>
+        </ul>
+    </div>
+</if>

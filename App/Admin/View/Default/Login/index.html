@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{:L('home')}</title>
+    <load href="__CSS__/public.css"/>
+    <script type="text/javascript">
+        function refreshimage() {
+            var cap = document.getElementById('vcode');
+            cap.src = cap.src + '?';
+        }
+    </script>
+</head>
+<body>
+<div id="login">
+    <div class="dologo"></div>
+
+    <form action="{:U('Login/login')}" method="post">
+        <ul>
+            <li class="inpLi"><b>{:L('login_user_name')}：</b><input type="text" name="user_name" class="inpLogin"></li>
+            <li class="inpLi"><b>{:L('login_password')}：</b><input type="password" name="password" class="inpLogin"></li>
+
+            <if condition="$site['captcha']">
+                <li class="captchaPic">
+                    <div class="inpLi"><b>{:L('login_captcha')}：</b><input type="text" name="captcha" class="captcha"></div>
+                    <img id="vcode" src="{:U('Login/vcode')}" alt="{:L('captcha')}" border="1" onClick="refreshimage()" title="{:L('login_captcha_refresh')}">
+                </li>
+            </if>
+
+            <li class="sub"><input type="submit" name="submit" class="btn" value="{:L('login_submit')}"></li>
+            <li class="action">
+                <a href="{:U('Login/password_reset')}">{:L('login_password_forget')}？</a>
+                <em class="separator">|</em>
+                <a href="{:U('Home/Index/index')}">{:L('login_back')}</a>
+            </li>
+        </ul>
+    </form>
+</div>
+</body>
+</html>

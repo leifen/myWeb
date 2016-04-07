@@ -1,0 +1,35 @@
+<extend name="Public:common" />
+
+<block name="main">
+    <div id="manager" class="mainBox">
+        <h3><a href="{$action_link.href}" class="actionBtn">{$action_link.text}</a>{$ur_here}</h3>
+
+        <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+            <tr>
+                <th width="30" align="center">{:L('record_id')}</th>
+                <th align="center">{:L('manager_username')}</th>
+                <th align="center">{:L('manager_email')}</th>
+                <th align="center">{:L('manager_add_time')}</th>
+                <th align="center">{:L('manager_last_login')}</th>
+                <th align="center">{:L('handler')}</th>
+            </tr>
+            <volist name="manager_list" id="manager_list">
+            <tr>
+                <td align="center">{$manager_list.user_id}</td>
+                <td align="center">{$manager_list.user_name}</td>
+                <td align="center">{$manager_list.email}</td>
+                <td align="center">{$manager_list.add_time|date="Y-m-d H:i:s",###}</td>
+                <td align="center">{$manager_list.last_login|date="Y-m-d H:i:s",###}</td>
+                <td align="center">
+                    <a href="{:U('Manager/edit',array('id'=>$manager_list['user_id']))}">
+                        {:L('edit')}
+                    </a> | <a href="{:U('Manager/destroy',array('id'=>$manager_list['user_id']))}">
+                        {:L('del')}
+                    </a>
+                </td>
+            </tr>
+            </volist>
+        </table>
+
+    </div>
+</block>

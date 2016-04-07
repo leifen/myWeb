@@ -1,0 +1,98 @@
+<extend name="Public:common" />
+
+<block name="head">
+    <load href="__JS__/jquery.autoTextarea.js" />
+    <load href="__JS__/kindeditor/kindeditor-all-min.js" />
+    <load href="__JS__/kindeditor/lang/zh_CN.js" />
+    <script>
+        $(function(){
+            var editor;
+            KindEditor.ready(function(K) {
+                editor = K.create('#content',{
+                    newlineTag : 'br'
+                });
+            });
+
+            $("#defined").autoTextarea({maxHeight:300});
+        });
+    </script>
+</block>
+
+<block name="main">
+    <div class="mainBox">
+        <h3><a href="{$action_link.href}" class="actionBtn">{$action_link.text}</a>{$ur_here}</h3>
+
+        <form action="{:U('Case/update')}" method="post" enctype="multipart/form-data">
+            <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+                <tr>
+                    <td width="90" align="right">{:L('case_name')}</td>
+                    <td>
+                        <input type="text" name="name" value="{$case.name}" size="80" class="inpMain" />
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">{:L('case_category')}</td>
+                    <td>
+                        <select name="cat_id">
+                            <option value="0">{:L('uncategorized')}</option>
+                            <volist name="case_category" id="cate">
+                                <eq name="cate['cat_id']" value="$case['cat_id']">
+                                          <option value="{$cate.cat_id}" selected="selected">{$cate.mark} {$cate.cat_name}</option>
+                                    <else/>
+                                         <option value="{$cate.cat_id}">{$cate.mark} {$cate.cat_name}</option>
+                                </eq>
+
+                            </volist>
+                        </select>
+                    </td>
+                </tr>
+
+                <if condition="$case['defined']">
+                    <tr>
+                        <td align="right" valign="top">{:L('case_defined')}</td>
+                        <td>
+                            <textarea name="defined" id="defined" cols="50" class="textAreaAuto" style="height:{$$case.defined_count}0px">{$case.defined}</textarea>
+                        </td>
+                    </tr>
+                </if>
+
+                <tr>
+                    <td align="right" valign="top">{:L('case_content')}</td>
+                    <td><textarea id="content" name="content" style="width:780px;height:400px;" class="textArea">{$case.content}</textarea></td>
+                </tr>
+                <tr>
+                    <td align="right">{:L('thumb')}</td>
+                    <td>
+                        <input type="file" name="image" size="38" class="inpFlie" />
+                        <if condition="$case['image']">
+                            <a href="__ROOT__/{$case.image}" target="_blank"> <img src="__IMG__/icon_yes.png"></a>
+                        <else/>
+                             <img src="__IMG__/icon_no.png">
+                        </if>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">{:L('keywords')}</td>
+                    <td>
+                        <input type="text" name="keywords" value="{$case.keywords}" size="50" class="inpMain" />
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">{:L('description')}</td>
+                    <td>
+                        <input type="text" name="description" value="{$case.description}" size="50" class="inpMain" />
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="hidden" name="id" value="{$case.id}">
+                        <input type="hidden" name="image" value="{$case.image}">
+                        <input name="submit" class="btn" type="submit" value="{:L('btn_submit')}" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+    </div>
+</block>

@@ -1,0 +1,60 @@
+<extend name="Public:common" />
+
+<block name="main">
+    <div id="manager" class="mainBox">
+        <h3><a href="{$action_link.href}" class="actionBtn">{$action_link.text}</a>{$ur_here}</h3>
+
+        <form action="{:U('Manager/update')}" method="post">
+            <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+                <tr>
+                    <td width="100" align="right">{:L('manager_username')}</td>
+                    <td>
+
+                        <if condition="session('auth')['action_list'] neq ALL">
+                            <input type="text" name="user_name" value="{$manager_info.user_name}" size="40" class="inpMain" readonly="true"/>
+                        <else />
+                            <input type="text" name="user_name" value="{$manager_info.user_name}" size="40" class="inpMain"/>
+                        </if>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td width="100" align="right">{:L('manager_email')}</td>
+                    <td>
+                        <input type="text" name="email" value="{$manager_info.email}" size="40" class="inpMain" />
+                    </td>
+                </tr>
+
+                <if condition="session('auth')['action_list'] neq ALL">
+                    <tr>
+                        <td align="right">{:L('manager_old_password')}</td>
+                        <td>
+                            <input type="password" name="old_password" size="40" class="inpMain" />
+                        </td>
+                    </tr>
+                </if>
+
+                <tr>
+                    <td align="right">{:L('manager_new_password')}</td>
+                    <td>
+                        <input type="password" name="password" size="40" class="inpMain" />
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">{:L('manager_new_password_confirm')}</td>
+                    <td>
+                        <input type="password" name="password_confirm" size="40" class="inpMain" />
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="hidden" name="id" value="{$manager_info.user_id}" />
+                        <input type="submit" name="submit" class="btn" value="{:L('btn_submit')}" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+    </div>
+</block>

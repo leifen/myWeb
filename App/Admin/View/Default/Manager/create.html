@@ -1,0 +1,43 @@
+<extend name="Public:common" />
+
+<block name="main">
+    <div id="manager" class="mainBox">
+        <h3><a href="{$action_link.href}" class="actionBtn">{$action_link.text}</a>{$ur_here}</h3>
+
+        <form action="{:U('Manager/insert')}" method="post">
+            <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+                <tr>
+                    <td width="100" align="right">{:L('manager_username')}</td>
+                    <td>
+                        <input type="text" name="user_name" size="40" class="inpMain" />
+                    </td>
+                </tr>
+                <tr>
+                    <td width="100" align="right">{:L('manager_email')}</td>
+                    <td>
+                        <input type="text" name="email" size="40" class="inpMain" />
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">{:L('manager_password')}</td>
+                    <td>
+                        <input type="password" name="password" size="40" class="inpMain" />
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">{:L('manager_password_confirm')}</td>
+                    <td>
+                        <input type="password" name="password_confirm" size="40" class="inpMain" />
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" name="submit" class="btn" value="{:L('btn_submit')}" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+    </div>
+</block>

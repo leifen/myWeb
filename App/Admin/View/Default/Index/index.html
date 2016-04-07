@@ -1,0 +1,105 @@
+<extend name="Public:common" />
+
+<block name="main">
+    <div id="index" class="mainBox">
+
+<!--------------------------单页面管理-------------------------------------->
+        <div class="indexBox">
+            <div class="boxTitle">{:L('title_page')}</div>
+            <ul class="ipage">
+                <volist name="page_list" id="page_list">
+                    <gt name="page_list['level']" value="0">
+                        <a href="{:U('Page/edit',array('id'=>$page_list['id']))}" class="child{$page_list.level}">{$page_list.page_name}</a>
+                        <else/>
+                        <a href="{:U('Page/edit',array('id'=>$page_list['id']))}">{$page_list.page_name}</a>
+                    </gt>
+                </volist>
+                <div class="clear"></div>
+            </ul>
+        </div>
+        <!--------------------------网站基本信息-------------------------------------->
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="indexBoxTwo">
+            <tr>
+                <td width="65%" valign="top" class="pr">
+                    <div class="indexBox">
+                        <div class="boxTitle">{:L('title_site_info')}</div>
+                        <ul>
+                            <table width="100%" border="0" cellspacing="0" cellpadding="7" class="tableBasic">
+                                <tr>
+                                    <td width="120">{:L('num_page')}：</td>
+                                    <td><strong>{$sys_info.num_page}</strong></td>
+                                    <td width="100">{:L('num_article')}：</td>
+                                    <td><strong>{$sys_info.num_article}</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>{:L('num_product')}：</td>
+                                    <td><strong>{$sys_info.num_product}</strong></td>
+                                    <td>{:L('language')}：</td>
+                                    <td><strong>{$site.language}</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>{:L('dou_version')}：</td>
+                                    <td><strong>{$sys_info.tp_ver}</strong></td>
+                                    <td>{:L('charset')}：</td>
+                                    <td><strong>{$sys_info.charset}</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>{:L('site_theme')}：</td>
+                                    <td><strong>{$site.site_theme}</strong></td>
+                                    <td>{:L('build_date')}：</td>
+                                    <td><strong>{$sys_info.build_date}</strong></td>
+                                </tr>
+                            </table>
+                        </ul>
+                    </div>
+                </td>
+                <td valign="top" class="pl">
+                    <div class="indexBox">
+                        <div class="boxTitle">{$title_admin_log}</div>
+                        <ul>
+                            <table width="100%" border="0" cellspacing="0" cellpadding="7" class="tableBasic">
+                                <tr>
+                                    <th width="45%">{:L('manager_log_ip')}</th>
+                                    <th width="55%">{:L('manager_log_create_time')}</th>
+                                </tr>
+                                <volist name="log_list" id="log_list">
+                                <tr>
+                                    <td align="center">{$log_list.ip}</td>
+                                    <td align="center">{$log_list.create_time|date='Y-d-m H:i:s',###}</td>
+                                </tr>
+                                </volist>
+                            </table>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+<!--------------------------服务器信息-------------------------------------->
+        <div class="indexBox">
+            <div class="boxTitle">{:L('title_sys_info')}</div>
+            <ul>
+                <table width="100%" border="0" cellspacing="0" cellpadding="7" class="tableBasic">
+                    <tr>
+                        <td width="120" valign="top">{:L('php_version')}：</td>
+                        <td valign="top">{$sys_info.php_ver} </td>
+                        <td width="100" valign="top">{:L('mysql_version')}：</td>
+                        <td valign="top">{$sys_info.mysql_ver}</td>
+                        <td width="100" valign="top">{:L('os')}：</td>
+                        <td valign="top">{$sys_info.os}({$sys_info.ip})</td>
+                    </tr>
+                    <tr>
+                        <td valign="top">{:L('max_filesize')}：</td>
+                        <td valign="top">{$sys_info.max_filesize}</td>
+                        <td valign="top">{:L('gd')}：</td>
+                        <td valign="top">{$sys_info.gd}</td>
+                        <td valign="top">{:L('web_server')}：</td>
+                        <td valign="top">{$sys_info.web_server}</td>
+                    </tr>
+                </table>
+            </ul>
+        </div>
+
+    </div>
+    </div>
+</block>

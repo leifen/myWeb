@@ -1,0 +1,42 @@
+<extend name="Public:common" />
+
+<block name="main">
+
+    <div class="wrap mb">
+        <div id="pageLeft">
+            <div class="treeBox">
+                <h3>{:L('about_tree')}</h3>
+                <ul>
+                    <if condition="$top_cur"><li class="cur"><else/><li></if>
+                        <a href="{$top.url}">{$top.page_name}</a>
+                    </li>
+                    <volist name="page_list" id="list">
+                        <if condition="$list['cur']"><li class="cur"><else/><li></if>
+                            <a href="{$list.url}">{$list.page_name}</a>
+                        </li>
+                        <if condition="$list['child']">
+                        <ul>
+                            <volist name="list['child']" id="child">
+                                <if condition="$child['cur']"><li class="cur"><else/><li></if>
+                                -<a href="{$child.url}">{$child.page_name}</a></li>
+                            </volist>
+                        </ul>
+                        </if>
+                    </volist>
+                </ul>
+            </div>
+        </div>
+        <div id="pageIn">
+
+            <div class="urHere">{:L('ur_here')}：<a href="{$config.root_url}">{:L('home')}</a><b>></b>{$ur_here}</div>
+
+            <div id="page">
+                <h1>{$page.page_name}</h1>
+                <div class="content"> {$page.content} </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+
+</block>

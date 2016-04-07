@@ -1,0 +1,64 @@
+<extend name="Public:common" />
+
+<block name="main">
+
+    <div class="wrap mb">
+        <div id="pageLeft">
+
+            <div class="treeBox">
+                <h3>{:L('article_tree')}</h3>
+                <ul>
+                    <volist name="article_category" id="cate">
+                        <if condition="$cate['cur']"><li class="cur"><else/><li> </if>
+                        <a href="{$cate.url}">{$cate.cat_name}</a>
+                        </li>
+                        <if condition="$cate['child']">
+                            <ul>
+                                <volist name="cate['child']" id="child">
+                                    <if condition="$child['cur']"><li class="cur"><else/><li> </if>
+                                    -<a href="{$child.url}">{$child.cat_name}</a>
+                                    </li>
+                                </volist>
+                            </ul>
+                        </if>
+                    </volist>
+                </ul>
+
+            </div>
+
+        </div>
+        <div id="pageIn">
+
+            <div class="urHere">{:L('ur_here')}：
+                <a href="{$config.root_url}">{:L('home')}</a><b>></b>
+                <a href="{$system_module.article_category}">{:L('article_category')}</a>
+                <if condition="$ur_here">
+                    <b>></b>{$ur_here}
+                </if>
+            </div>
+
+            <div id="article">
+                <h1>{$article.title}</h1>
+                <div class="info">{:L('add_time')}：{$article.add_time|date="Y-m-d",###} {:L('click')}：{$article.click}
+                    <if condition="!empty($article['defined'])">
+                        <volist name="article['defined']" id="defined">
+                            <li>{$defined.arr}：{$defined.value}</li>
+                        </volist>
+                    </if>
+                </div>
+                <div class="content"> {$article.content} </div>
+
+                <div class="lift">
+                    <if condition="$pre_next['pre']['id']">
+                         <span>{:L('article_previous')}：<a href="{$pre_next.pre.url}">{$pre_next.pre.title}</a></span>
+                    </if>
+                    <if condition="$pre_next['next']['id']">
+                         <span>{:L('article_next')}：<a href="{$pre_next.next.url}">{$pre_next.next.title}</a></span>
+                    </if>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+</block>

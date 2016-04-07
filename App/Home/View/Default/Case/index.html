@@ -1,0 +1,64 @@
+<extend name="Public:common" />
+
+<block name="main">
+
+    <div class="wrap mb">
+
+        <div id="pageLeft">
+            <div class="treeBox">
+                <h3>{:L('case_tree')}</h3>
+                <ul>
+                    <volist name="case_category" id="cate">
+                        <if condition="$cate['cur']"><li class="cur"><else/><li></if>
+                        <a href="{$cate.url}">{$cate.cat_name}</a>
+                        </li>
+
+                        <if condition="$cate['child']">
+                            <ul>
+                                <volist name="cate['child']" id="child">
+                                    <if condition="$child['cur']"><li class="cur"><else/><li></if>
+                                    -<a href="{$child.url}">{$child.cat_name}</a></li>
+                                </volist>
+                            </ul>
+                        </if>
+                    </volist>
+                </ul>
+            </div>
+        </div>
+
+        <div id="pageIn">
+
+            <div class="urHere">{:L('ur_here')}：
+                <a href="{$config.root_url}">{:L('home')}</a><b>></b>
+                <a href="{$system_module.case_category}">{:L('case_category')}</a>
+                <if condition="$ur_here">
+                    <b>></b>{$ur_here}
+                </if>
+            </div>
+
+            <div id="product">
+                <div class="productImg"><a href="__ROOT__/{$case.image}" target="_blank"><img src="__ROOT__/{$case.image}" width="300" /></a></div>
+                <div class="productInfo">
+                    <h1>{$case.name}</h1>
+                    <ul>
+                        <li>{:L('case_description')}：{$case.description}</li>
+                        <if condition="!empty($product['defined'])">
+                            <volist name="product['defined']" id="defined">
+                                <li>{$defined.arr}：{$defined.value}</li>
+                            </volist>
+                        </if>
+                    </ul>
+                </div>
+                <div class="clear"></div>
+                <div class="productContent">
+                    <h3>{:L('case_content')}</h3>
+                    <ul>
+                        {$case.content}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+</block>

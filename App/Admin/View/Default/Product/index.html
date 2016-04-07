@@ -1,0 +1,133 @@
+<extend name="Public:common" />
+
+<block name="head">
+
+    <script type="text/javascript">
+        onload = function()
+        {
+            document.forms['action'].reset();
+        }
+
+        function douAction()
+        {
+            var frm = document.forms['action'];
+            frm.elements['new_cat_id'].style.display = frm.elements['action'].value == 'category_move' ? '' : 'none';
+        }
+    </script>
+
+</block>
+
+<block name="main">
+    <div class="mainBox">
+        <h3><a href="{$action_link.href}" class="actionBtn add">{$action_link.text}</a>{$ur_here}</h3>
+
+        <div class="filter">
+            <form action="{:U('Product/index')}" method="post">
+                <select name="cat_id">
+                    <option value="0">{:L('uncategorized')}</option>
+                    <volist name="product_category" id="cate">
+
+                    <eq name="cate['cat_id']" value="$cat_id">
+                         <option value="{$cate.cat_id}" selected="selected">{$cate.mark} {$cate.cat_name}</option>
+                    <else/>
+                         <option value="{$cate.cat_id}">{$cate.mark} {$cate.cat_name}</option>
+                    </eq>
+                   </volist>
+
+                </select>
+                <input name="keyword" type="text" class="inpMain" value="{$keyword}" size="20" />
+                <input name="submit" class="btnGray" type="submit" value="{:L('btn_filter')}" />
+            </form>
+
+            <span>
+            <a class="btnGray" href="{:U('Product/re_thumb')}">{:L('product_thumb')}</a>
+                <if condition="$if_sort">
+                    <a class="btnGray" href="{:U('Product/sort')}">{:L('sort_close')}</a>
+                <else/>
+                    <a class="btnGray" href="{:U('Product/sort')}">{:L('sort_product')}</a>
+                </if>
+            </span>
+        </div>
+
+        <if condition="$if_sort">
+            <div class="homeSortRight">
+                <ul class="homeSortBg">
+                    {$sort_bg}
+                </ul>
+                <ul class="homeSortList">
+                    <volist name="sort" id="product">
+                        <li>
+                            <img src="__ROOT__/{$product.image}" width="60" height="60">
+                            <a href="{:U('Product/del_sort',array('id'=>$product['id']))}" title="{:L('sort_cancel')}">X</a>
+                        </li>
+                    </volist>
+                </ul>
+            </div>
+        </if>
+
+        <if condition="$if_sort">
+            <div id="list" class="homeSortLeft">
+        <else/>
+            <div id="list">
+        </if>
+
+        <form name="action" method="post" action="{:U('Product/action')}">
+            <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+                <tr>
+                    <th width="22" align="center">
+                        <input name='chkall' type='checkbox' id='chkall' onclick='selectcheckbox(this.form)' value='check'>
+                    </th>
+                    <th width="40" align="center">{:L('record_id')}</th>
+                    <th align="left">{:L('name')}</th>
+                    <th width="150" align="center">{:L('product_category')}</th>
+                    <th width="80" align="center">{:L('add_time')}</th>
+                    <th width="80" align="center">{:L('handler')}</th>
+                </tr>
+                <volist name="product_list" id="product">
+                <tr>
+                    <td align="center"><input type="checkbox" name="checkbox[]" value="{$product.id}" /></td>
+                    <td align="center">{$product.id}</td>
+                    <td><a href="{:U('Product/edit',array('id'=>$product['id']))}">{$product.name}</a></td>
+                    <td align="center">
+                        <if condition="$product['cat_name']">
+                             <a href="{:U('Product/index',array('cat_id'=>$product['cat_id']))}">{$product.cat_name.cat_name}</a>
+                        <else/>
+                             {:L('uncategorized')}
+                        </if>
+                    </td>
+                    <td align="center">{$product.add_time|date="Y-m-d",###}</td>
+                    <td align="center">
+                        <if condition="$if_sort">
+                            <a href="{:U('Product/set_sort',array('id'=>$product['id']))}">{:L('sort_btn')}</a>
+                        <else/>
+                            <a href="{:U('Product/edit',array('id'=>$product['id']))}">{:L('edit')}</a> |
+                            <a href="{:U('Product/destroy',array('id'=>$product['id']))}">{:L('del')}</a>
+                        </if>
+                    </td>
+                </tr>
+                </volist>
+            </table>
+            <div class="action">
+                <select name="action" onchange="douAction()">
+                    <option value="0">{:L('select')}</option>
+                    <option value="del_all">{:L('del')}</option>
+                    <option value="category_move">{:L('category_move')}</option>
+                </select>
+                <select name="new_cat_id" style="display:none">
+                    <option value="0">{:L('uncategorized')}</option>
+                    <volist name="product_category" id="cate">
+                        <eq name="cate['cat_id']" value="$cat_id">
+                            <option value="{$cate.cat_id}" selected="selected">{$cate.mark} {$cate.cat_name}</option>
+                        <else/>
+                            <option value="{$cate.cat_id}">{$cate.mark} {$cate.cat_name}</option>
+                        </eq>
+                    </volist>
+                </select>
+                <input name="submit" class="btn" type="submit" value="{:L('btn_execute')}" />
+            </div>
+        </form>
+    </div>
+    <div class="clear"></div>
+    <div class="pager">{$page}</div>
+
+</block>

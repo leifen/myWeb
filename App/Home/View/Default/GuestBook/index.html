@@ -1,0 +1,86 @@
+<extend name="Public:common" />
+
+<block name="main">
+
+    <div class="wrap mb">
+
+        <div class="urHere">
+            {:L('ur_here')}：
+            <a href="{$config.root_url}">{:L('home')}</a>
+            <if condition="$ur_here"><b>></b>{$ur_here}</if>
+        </div>
+
+        <div id="guestBook">
+            <if condition="$guestbook">
+            <h2>{$lang.guestbook}</h2>
+            <div class="bookList">
+                <volist name="guestbook" id="guestbook">
+                <dl>
+                    <dt>{:L('guestbook_title')}：{$guestbook.title} <b>{$guestbook.add_time|date='Y-m-d',###}</b></dt>
+                    <dd><em>{:L('guestbook_content')}：</em><span>{$guestbook.content}</span></dd>
+                    <if condition="$guestbook['reply']">
+                    <p><em>{:L('guestbook_reply')}：</em><span>{$guestbook.reply}</span><b>{$guestbook.reply_time}</b></p>
+                    </if>
+                </dl>
+                </volist>
+                <div class="pager">{$page}</div>
+            </div>
+            </if>
+
+
+            <h2>{:L('guestbook_add')}</h2>
+            <div class="bookAdd">
+                <form id="bookAdd" action="{:U('GuestBook/insert')}" method="post">
+                    <dl>
+                        <dt>{:L('guestbook_title')}：</dt>
+                        <dd>
+                            <input type="text" name="title" value="{$post.title}" size="80" class="textInput" />
+
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>{:L('guestbook_name')}：</dt>
+                        <dd>
+                            <input type="text" name="name" value="{$post.name}" size="55" class="textInput" />
+
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>{:L('guestbook_contact_type')}：</dt>
+                        <dd>
+                            <select name="contact_type" class="select">
+                                <option value="">{:L('select')}</option>
+                                {$option}
+                            </select>
+                            <input type="text" name="contact" value="{$post.contact}" size="60" class="textInput" />
+
+                        </dd>
+                    </dl>
+
+                    <dl>
+                        <dt>{:L('guestbook_content')}：</dt>
+                        <dd>
+                            <textarea name="content" cols="90" rows="5" class="textArea" /></textarea>
+
+                        </dd>
+                    </dl>
+                    <if condition="$config['captcha']">
+                    <dl>
+                        <dt>{:L('captcha')}：</dt>
+                        <dd>
+                            <input type="text" name="captcha" class="textArea captcha" size="10">
+                            <img id="vcode" src="{:U('Admin/Login/vcode')}" alt="{:L('captcha')}" border="1" onClick="refreshimage()" title="{:L('captcha_refresh')}">
+
+                        </dd>
+                    </dl>
+                    </if>
+                    <dl class="submit">
+                        <input type="submit" class="btn" value="{:L('btn_submit')}"/>
+                    </dl>
+                </form>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+</block>

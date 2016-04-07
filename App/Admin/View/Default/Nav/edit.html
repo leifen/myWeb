@@ -1,0 +1,108 @@
+<extend name="Public:common" />
+
+
+<block name="main">
+    <div class="mainBox">
+        <h3><a href="{$action_link.href}" class="actionBtn">{$action_link.text}</a>{$ur_here}</h3>
+
+        <form action="{:U('Nav/update')}" method="post">
+            <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+                <tr>
+                    <th colspan="2">&nbsp;</th>
+                </tr>
+
+                <neq name="nav_info['module']" value="nav">
+                    <tr>
+                        <td width="80" height="35" align="right">{:L('nav_system')}</td>
+                        <td>
+                            <select name="nav_menu" onchange="change('nav_name', this)">
+                                <option value="">{:L('nav_menu')}</option>
+                                <volist name="catalog" id="catalog">
+                                    <if condition="$catalog['cur']">
+                                        <option value="{$catalog.module},{$catalog.guide}" selected="selected" title="{$catalog.name}">{$catalog.mark} {$catalog.name}</option>
+                                        <else/>
+                                        <option value="{$catalog.module},{$catalog.guide}" title="{$catalog.name}">{$catalog.mark} {$catalog.name}</option>
+                                    </if>
+
+                                </volist>
+                            </select>
+                        </td>
+                    </tr>
+                </neq>
+
+                <tr>
+                    <td width="80" height="35" align="right">{:L('nav_name')}</td>
+                    <td>
+                        <input type="text" id="nav_name" name="nav_name" value="{$nav_info.nav_name}" size="40" class="inpMain" />
+                    </td>
+                </tr>
+                <tr>
+                    <td height="35" align="right">{:L('nav_type')}</td>
+                    <td>
+                        <label for="type_0">
+                            <eq name="nav_info['type']" value="middle">
+                                <input type="radio" name="type" id="type_0" value="middle" checked="true" onChange="dou_callback('{:U('Nav/nav_select',array('id'=>$nav_info['id']))}', 'type', this.value, 'parent')"> {:L('nav_type_middle')}
+                                <else/>
+                                <input type="radio" name="type" id="type_0" value="middle" onChange="dou_callback('{:U('Nav/nav_select',array('id'=>$nav_info['id']))}', 'type', this.value, 'parent')"> {:L('nav_type_middle')}
+                            </eq>
+                        </label>
+                        <label for="type_1">
+                            <eq name="nav_info['type']" value="top">
+                                <input type="radio" name="type" id="type_1" value="top" checked="true" onChange="dou_callback('{:U('Nav/nav_select',array('id'=>$nav_info['id']))}', 'type', this.value, 'parent')"> {:L('nav_type_top')}
+                                <else/>
+                                <input type="radio" name="type" id="type_1" value="top" onChange="dou_callback('{:U('Nav/nav_select',array('id'=>$nav_info['id']))}', 'type', this.value, 'parent')"> {:L('nav_type_top')}
+                            </eq>
+                        </label>
+                        <label for="type_2">
+                            <eq name="nav_info['type']" value="bottom">
+                                <input type="radio" name="type" id="type_2" value="bottom" checked="true" onChange="dou_callback('{:U('Nav/nav_select',array('id'=>$nav_info['id']))}', 'type', this.value, 'parent')"> {:L('nav_type_bottom')}
+                                <else/>
+                                <input type="radio" name="type" id="type_2" value="bottom" onChange="dou_callback('{:U('Nav/nav_select',array('id'=>$nav_info['id']))}', 'type', this.value, 'parent')"> {:L('nav_type_bottom')}
+                            </eq>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td height="35" align="right">{:L('nav_link')}</td>
+                    <td>
+                        <eq name="nav_info['module']" value="nav">
+                             <input type="text" name="guide" value="{$nav_info.url}" size="60" class="inpMain" />
+                        <else/>
+                             <input type="text" name="guide_no" value="{$nav_info.url}" size="60" readOnly="true" class="inpMain" />
+                             <b class="cue">{:L('nav_not_modify')}</b>
+                        </eq>
+                    </td>
+                </tr>
+                <tr>
+                    <td height="35" align="right">{:L('parent')}</td>
+                    <td id="parent">
+                        <select name="parent_id">
+                            <option value="0">{:L('empty')}</option>
+                            <volist name="nav_list" id="nav_list">
+                                <eq name="nav_list['id']" value="$nav_info['parent_id']">
+                                    <option value="{$nav_list.id}" selected="selected">{$nav_list.mark} {$nav_list.nav_name}</option>
+                                    <else/>
+                                    <option value="{$nav_list.id}" >{$nav_list.mark} {$nav_list.nav_name}</option>
+                                </eq>
+                            </volist>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td height="35" align="right">{:L('sort')}</td>
+                    <td>
+                        <input type="text" name="sort" value="{$nav_info.sort}" size="5" class="inpMain" />
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="hidden" name="id" value="{$nav_info.id}" />
+                        <input name="submit" class="btn" type="submit" value="{:L('btn_submit')}" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+    </div>
+</block>

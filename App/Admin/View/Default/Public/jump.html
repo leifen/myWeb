@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>{:L('home')}--{$msgTitle}</title>
+<include file="Public/head"/>
+</head>
+<body>
+
+<if condition="session('auth')">
+
+	<div id="dcWrap">
+		<include file="Public/header"/>
+		<div id="dcLeft">
+			<include file="Public/menu"/>
+		</div>
+		<div id="dcMain">
+			<div id="urHere">{:L('home')}<b>></b><strong>{:L('msg')}</strong>
+			</div>
+			<div class="mainBox">
+				<h3>{:L('msg')}</h3>
+				<div id="douMsg">
+					<?php if ($status) {?>
+					<h2><?php echo($message); ?></h2>
+					<dl>
+						<dt><p class="jump">如果您不做出选择，将在 <a id="href" href="<?php echo($jumpUrl); ?>"><b id="wait"><?php echo($waitSecond); ?></b> 秒后跳转到上一个链接地址。</a></p></dt>
+						<dd><a href="<?php echo($jumpUrl); ?>"><?php echo(L('msg_back')); ?></a></dd>
+					</dl>
+					<?php } else { ?>
+					<h2><?php echo($error); ?></h2>
+					<dl>
+						<dt><p class="jump">如果您不做出选择，将在 <a id="href" href="<?php echo($jumpUrl); ?>"><b id="wait"><?php echo($waitSecond); ?></b> 秒后跳转到上一个链接地址。</a></p></dt>
+						<dd><a href="<?php echo($jumpUrl); ?>">{:L('msg_back')}</a></dd>
+					</dl>
+					<?php } ?>
+				</div>
+			</div>
+		</div>
+		<include file="Public/footer"/>
+	</div>
+
+<else />
+
+	<div id="outMsg">
+
+		<?php if ($status) {?>
+		<h2><?php echo($message); ?></h2>
+		<dl>
+			<dt><p class="jump">如果您不做出选择，将在 <a id="href" href="<?php echo($jumpUrl); ?>"><b id="wait"><?php echo($waitSecond); ?></b> 秒后跳转到上一个链接地址。</a></p></dt>
+			<dd><a href="<?php echo($jumpUrl); ?>"><?php echo(L('msg_back')); ?></a></dd>
+		</dl>
+		<?php } else { ?>
+		<h2><?php echo($error); ?></h2>
+		<dl>
+			<dt><p class="jump">如果您不做出选择，将在 <a id="href" href="<?php echo($jumpUrl); ?>"><b id="wait"><?php echo($waitSecond); ?></b> 秒后跳转到上一个链接地址。</a></p></dt>
+			<dd><a href="<?php echo($jumpUrl); ?>">{:L('msg_back')}</a></dd>
+		</dl>
+		<?php } ?>
+
+	</div>
+
+</if>
+
+</body>
+<script type="text/javascript">
+	(function(){
+		var wait = document.getElementById('wait'),href = document.getElementById('href').href;
+		var interval = setInterval(function(){
+			var time = --wait.innerHTML;
+			if(time <= 0) {
+				location.href = href;
+				clearInterval(interval);
+			};
+		}, 1000);
+	})();
+</script>
+</html>

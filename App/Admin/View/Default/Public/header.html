@@ -1,0 +1,41 @@
+<div id="dcHead">
+    <div id="head">
+        <div class="logo"><a href="index.php"><img src="__IMG__/dclogo.gif" alt="logo"></a></div>
+        <div class="nav">
+            <ul>
+                <li class="M"><a href="JavaScript:void(0);" class="topAdd">{:L('top_add')}</a>
+                    <div class="drop mTopad">
+                        <if condition="$system['open']['product']" >
+                        <a href="{:U('Product/create')}">{:L('top_add_product')}</a>
+                        </if>
+                        <if condition="$system['open']['article']" >
+                        <a href="{:U('Article/create')}">{:L('top_add_article')}</a>
+                        </if>
+                        <if condition="$system['open']['project']" >
+                            <a href="{:U('Project/create')}">{:L('nav_project')}</a>
+                        </if>
+                        <if condition="$system['open']['case']" >
+                            <a href="{:U('Case/create')}">{:L('nav_case')}</a>
+                        </if>
+                        <a href="{:U('Nav/create')}">{:L('top_add_nav')}</a>
+                        <a href="{:U('Show/index')}">{:L('top_add_show')}</a>
+                        <a href="{:U('Page/create')}">{:L('top_add_page')}</a>
+                        <a href="{:U('Manager/create')}">{:L('top_add_manager')}</a>
+                    </div>
+                </li>
+                <li><a href="{:U('Home/Index/index')}" target="_blank">{:L('top_go_site')}</a></li>
+                <li><a href="{:U('Index/clear_cache')}">{:L('clear_cache')}</a></li>
+                <li><a href="http://wpa.qq.com/msgrd?&uin=287715706&site=qq&menu=yes" target="_blank">{:L('top_help')}</a></li>
+            </ul>
+            <ul class="navRight">
+                <li class="M noLeft"><a href="JavaScript:void(0);">{:L('top_welcome')}{:session('auth')['user_name']}</a>
+                    <div class="drop mUser">
+            <a href="{:U('Manager/edit',array('id'=>session('auth')['user_id']))}">{:L('top_manager_edit')}</a>
+        </div>
+        </li>
+        <li class="noRight"><a href="{:U('Login/logout')}">{:L('top_logout')}</a></li>
+        </ul>
+        </div>
+    </div>
+</div>
+<!-- dcHead 结束 -->

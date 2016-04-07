@@ -1,0 +1,82 @@
+<extend name="Public:common" />
+<block name="head">
+
+    <load href="__JS__/kindeditor/kindeditor-all-min.js"/>
+    <load href="__JS__/include/kindeditor/lang/zh_CN.js"/>
+    <script>
+        var editor;
+        KindEditor.ready(function(K) {
+            editor = K.create('#content',{
+                newlineTag : 'br'
+            });
+        });
+    </script>
+
+</block>
+
+<block name="main">
+    <div class="mainBox">
+        <h3><a href="{$action_link.href}" class="actionBtn">{$action_link.text}</a>{$ur_here}</h3>
+
+        <form action="{:U('Page/update')}" method="post">
+            <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+                <tr>
+                    <td width="80" align="right">{:L('page_name')}</td>
+                    <td>
+                        <input type="text" name="page_name" value="{$page.page_name}"  size="40" class="inpMain" />
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">{:L('unique')}</td>
+                    <td>
+                        <input type="text" name="unique_id" value="{$page.unique_id}"  size="40" class="inpMain" />
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">{:L('parent')}</td>
+                    <td>
+                        <select name="parent_id">
+                            <option value="0">{:L('empty')}</option>
+
+                            <volist name="page_list" id="list">
+                                <eq name="list['id']" value="$page['parent_id']">
+                                    <option value="{$list.id}" selected="selected">{$list.mark} {$list.page_name}</option>
+                                <else/>
+                                    <option value="{$list.id}">{$list.mark} {$list.page_name}</option>
+                                </eq>
+
+                            </volist>
+
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">{:L('page_content')}</td>
+                    <td>
+                        <textarea id="content" name="content" style="width:780px;height:400px;" class="textArea">{$page.content}</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">{:L('keywords')}</td>
+                    <td>
+                        <input type="text" name="keywords" size="90" value="{$page.keywords}" class="inpMain" />
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">{:L('description')}</td>
+                    <td>
+                        <input type="text" name="description" value="{$page.description}" size="90" class="inpMain" />
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="hidden" name="id" value="{$page.id}">
+                        <input name="submit" class="btn" type="submit" value="{:L('btn_submit')}" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+    </div>
+</block>

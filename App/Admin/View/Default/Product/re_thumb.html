@@ -1,0 +1,35 @@
+<extend name="Public:common" />
+
+<block name="head">
+    <script type="text/javascript">
+
+        function mask(i) {
+            document.getElementById('mask').innerHTML += i;
+            document.getElementById('mask').scrollTop = 100000000;
+        }
+        function success() {
+            var d=document.getElementById('success');
+            d.style.display="block";
+        }
+    </script>
+</block>
+
+<block name="main">
+    <div class="mainBox">
+        <h3><a href="{$action_link.href}" class="actionBtn">{$action_link.text}</a>{$ur_here}</h3>
+
+        <dl id="maskBox">
+            <dt>
+                <em>{$mask.count}</em>
+                <if condition="!$mask['confirm']">
+                    <form action="{:U('Product/re_thumb')}" method="post">
+                         <input name="confirm" class="btn" type="submit" value="{:L('product_thumb_start')}" />
+                    </form>
+                </if>
+            </dt>
+            <dd class="maskBg">{$mask.bg}<i id="success">{:L('product_thumb_succes')}</i></dd>
+            <dd id="mask"></dd>
+        </dl>
+
+    </div>
+</block>

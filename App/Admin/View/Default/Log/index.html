@@ -1,0 +1,29 @@
+<extend name="Public:common" />
+
+<block name="main">
+    <div id="manager" class="mainBox">
+        <h3>{$ur_here}</h3>
+
+        <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+            <tr>
+                <th width="30" align="center">{:L('record_id')}</th>
+                <th width="150" align="center">{:L('manager_log_create_time')}</th>
+                <th width="100" align="center">{:L('manager_log_user_id')}</th>
+                <th align="left">{:L('manager_log_action')}</th>
+                <th width="100" align="center">{:L('manager_log_ip')}</th>
+            </tr>
+
+            <volist name="log_list" id="log_list">
+            <tr>
+                <td align="center">{$log_list.id}</td>
+                <td align="center">{$log_list.create_time|date="Y-m-d H:i:s",###}</td>
+                <td align="center">{$log_list.user_name.user_name}</td>
+                <td align="left">{$log_list.action}</td>
+                <td align="center">{$log_list.ip}</td>
+            </tr>
+            </volist>
+        </table>
+
+        <div class="pager">{$page}</div>
+    </div>
+</block>

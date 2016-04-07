@@ -1,0 +1,62 @@
+<extend name="Public:common" />
+
+<block name="main">
+    <div class="mainBox">
+        <h3><a href="{$action_link.href}" class="actionBtn">{$action_link.text}</a>{$ur_here}</h3>
+
+        <form action="{:U('Product_category/insert')}" method="post">
+            <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+                <tr>
+                    <td width="80" align="right">{:L('product_category_name')}</td>
+                    <td>
+                        <input type="text" name="cat_name"  size="40" class="inpMain" />
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">{:L('unique')}</td>
+                    <td>
+                        <input type="text" name="unique_id" size="40" class="inpMain" />
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">{:L('parent')}</td>
+                    <td>
+                        <select name="parent_id">
+                            <option value="0">{:L('empty')}</option>
+
+                            <volist name="product_category" id="cate">
+                                <option value="{$cate.cat_id}">{$cate.mark} {$cate.cat_name}</option>
+                            </volist>
+
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">{:L('keywords')}</td>
+                    <td>
+                        <input type="text" name="keywords"  size="40" class="inpMain" />
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">{:L('description')}</td>
+                    <td>
+                        <textarea name="description" cols="60" rows="4" class="textArea"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">{:L('sort')}</td>
+                    <td>
+                        <input type="text" name="sort" value="50" size="5" class="inpMain" />
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input name="submit" class="btn" type="submit" value="{:L('btn_submit')}" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+    </div>
+</block>

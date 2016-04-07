@@ -1,0 +1,32 @@
+<extend name="Public:common" />
+
+<block name="main">
+    <div class="mainBox">
+        <h3><a href="{$action_link.href}" class="actionBtn add">{$action_link.text}</a>{$ur_here}</h3>
+
+        <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+            <tr>
+                <th width="120" align="left">{:L('case_category_name')}</th>
+                <th align="left">{:L('unique')}</th>
+                <th align="left">{:L('description')}</th>
+                <th width="60" align="center">{:L('sort')}</th>
+                <th width="80" align="center">{:L('handler')}</th>
+            </tr>
+
+            <volist name="case_category" id="cate">
+            <tr>
+                <td align="left">{$cate.mark} <a href="{:U('Case/index',array('cat_id'=>$cate['cat_id']))}">{$cate.cat_name}</a></td>
+                <td>{$cate.unique_id}</td>
+                <td>{$cate.description}</td>
+                <td align="center">{$cate.sort}</td>
+                <td align="center">
+                    <a href="{:U('Case_category/edit',array('cat_id'=>$cate['cat_id']))}">{:L('edit')}</a> |
+                    <a href="{:U('Case_category/destroy',array('cat_id'=>$cate['cat_id']))}">{:L('del')}</a>
+                </td>
+            </tr>
+            </volist>
+
+        </table>
+
+    </div>
+</block>

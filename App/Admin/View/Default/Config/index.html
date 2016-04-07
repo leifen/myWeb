@@ -1,0 +1,237 @@
+<extend name="Public:common" />
+
+<block name="head">
+    <load href="__JS__/jquery.tab.js" />
+    <script type="text/javascript">
+        $(function(){ $(".idTabs").idTabs(); });
+    </script>
+</block>
+
+<block name="main">
+    <div class="mainBox config">
+
+        <h3>{$ur_here}</h3>
+        <div class="idTabs">
+            <ul class="tab">
+                <li><a href="#main">{:L('system_main')}</a></li>
+                <li><a href="#display">{:L('system_display')}</a></li>
+                <li><a href="#defined">{:L('system_defined')}</a></li>
+                <li><a href="#mail">{:L('system_mail')}</a></li>
+            </ul>
+
+            <div class="items">
+                <form action="{:U('Config/update')}" method="post" enctype="multipart/form-data">
+                    <div id="main">
+                        <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+                            <tr>
+                                <th width="131">{:L('input_name')}</th>
+                                <th>{:L('input_value')}</th>
+                            </tr>
+                            <!-------------------常规设置开始-------------------------->
+                            <volist name="cfg_list_main" id="cfg_list">
+                                <tr>
+                                    <td align="right">{$cfg_list.lang}</td>
+                                    <td>
+                                        <if condition="$cfg_list['type'] eq radio">
+                                            <label for="{$cfg_list.name}_0">
+                                                <eq name="cfg_list['value']" value="0">
+                                                    <input type="radio" name="{$cfg_list.name}" id="{$cfg_list.name}_0" value="0" checked="checked">
+                                                    <else/>
+                                                    <input type="radio" name="{$cfg_list.name}" id="{$cfg_list.name}_0" value="0" >
+                                                </eq>
+                                                {:L('no')}
+                                            </label>
+                                            <label for="{$cfg_list.name}_1">
+                                                <eq name="cfg_list['value']" value="1">
+                                                    <input type="radio" name="{$cfg_list.name}" id="{$cfg_list.name}_1" value="1" checked="checked">
+                                                    <else/>
+                                                    <input type="radio" name="{$cfg_list.name}" id="{$cfg_list.name}_1" value="1">
+                                                </eq>
+                                                {:L('yes')}
+                                            </label>
+
+                                            <elseif condition="$cfg_list['type'] eq select" />
+
+                                            <select name="{$cfg_list.name}">
+                                                <volist name="cfg_list['box']" id="value">
+                                                    <eq name="cfg_list['value']" value="$value">
+                                                        <option value="{$value}"  selected="selected">{$value}</option>
+                                                        <else/>
+                                                        <option value="{$value}">{$value}</option>
+                                                    </eq>
+
+                                                </volist>
+                                            </select>
+
+                                            <elseif condition="$cfg_list['type'] eq file" />
+
+                                            <input type="file" name="{$cfg_list.name}" size="18" />
+                                            <input type="hidden" name="logo" value="{$cfg_list.value}" />
+                                            <if condition="$cfg_list['value']">
+                                                <a href="__ROOT__/{$cfg_list.value}" target="_blank">
+                                                    <img src="__IMG__/icon_yes.png">
+                                                </a>
+                                                <else/>
+                                                <img src="__IMG__/icon_no.png">
+                                            </if>
+
+                                            <elseif condition="$cfg_list['type'] eq textarea" />
+
+                                            <textarea name="{$cfg_list.name}" cols="83" rows="8" class="textArea" />{$cfg_list.value}</textarea>
+
+                                            <else/>
+                                            <input type="text" name="{$cfg_list.name}" value="{$cfg_list.value}" size="80" class="inpMain" />
+
+                                        </if>
+
+                                        <if condition="$cfg_list['cue']">
+                                            <if condition="($cfg_list['type'] eq radio) OR $cfg_list['type'] eq select">
+                                                <span class="cue ml">{$cfg_list.cue}</span>
+                                                <else/>
+                                                <p class="cue">{$cfg_list.cue}</p>
+                                            </if>
+                                        </if>
+                                    </td>
+                                </tr>
+                            </volist>
+                        </table>
+                    </div>
+                    <!-------------------显示设置开始-------------------------->
+                    <div id="display">
+                        <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+                            <tr>
+                                <th width="131">{:L('input_name')}</th>
+                                <th>{:L('input_value')}</th>
+                            </tr>
+                            <volist name="cfg_list_display" id="cfg_list">
+                                <eq name="cfg_list['type']" value="array">
+                                    <volist name="cfg_list['value']" id="cfg">
+                                        <tr>
+                                            <td align="right">{$cfg.lang}</td>
+                                            <td>
+                                                <input type="text" name="{$cfg.name}" value="{$cfg.value}" size="80" class="inpMain" />
+                                                <if condition="$cfg['cur']">
+                                                    <p class="cue">{$cfg.cue}</p>
+                                                </if>
+                                            </td>
+                                        </tr>
+                                    </volist>
+                                    <else/>
+                                    <tr>
+                                        <td align="right">{$cfg_list.lang}</td>
+                                        <td>
+                                            <input type="text" name="{$cfg_list.name}" value="{$cfg_list.value}" size="80" class="inpMain" />
+                                            <if condition="$cfg_list['cue']">
+                                                <p class="cue">{$cfg_list.cue}</p>
+                                            </if>
+                                        </td>
+                                    </tr>
+                                </eq>
+                            </volist>
+                        </table>
+                    </div>
+                    <!-------------------自定义开始-------------------------->
+                    <div id="defined">
+                        <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+                            <tr>
+                                <th width="131">{:L('input_name')}</th>
+                                <th>{:L('input_value')}</th>
+                            </tr>
+                            <volist name="cfg_list_defined" id="cfg_list">
+                                <eq name="cfg_list['type']" value="array">
+                                    <volist name="cfg_list['value']" id="cfg">
+                                        <tr>
+                                            <td align="right">{$cfg.lang}</td>
+                                            <td>
+                                                <input type="text" name="{$cfg.name}" value="{$cfg.value}" size="80" class="inpMain" />
+                                                <if condition="$cfg['cue']">
+                                                    <p class="cue">{$cfg.cue}</p>
+                                                </if>
+                                            </td>
+                                        </tr>
+                                    </volist>
+                                    <else/>
+                                    <tr>
+                                        <td align="right">{$cfg_list.lang}</td>
+                                        <td>
+                                            <!-- {if $cfg_list.type eq 'textarea'} -->
+                                            <eq name="cfg_list['type']" value="textarea">
+                                                <textarea name="{$cfg_list.name}" cols="70" rows="5" class="textArea" />{$cfg_list.value}</textarea>
+                                                <else/>
+                                                <input type="text" name="{$cfg_list.name}" value="{$cfg_list.value}" size="80" class="inpMain" />
+                                            </eq>
+                                            <if condition="$cfg['cue']">
+                                                <p class="cue">{$cfg.cue}</p>
+                                            </if>
+                                        </td>
+                                    </tr>
+                                </eq>
+                            </volist>
+                        </table>
+                    </div>
+                    <!-------------------邮件服务开始-------------------------->
+                    <div id="mail">
+                        <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+                            <tr>
+                                <th width="131">{:L('input_name')}</th>
+                                <th>{:L('input_value')}</th>
+                            </tr>
+                            <volist name="cfg_list_mail" id="cfg_list">
+                                <tr>
+                                    <td align="right">{$cfg_list.lang}</td>
+                                    <td>
+                                        <eq name="cfg_list['type']" value="radio">
+                                            <label for="{$cfg_list.name}_0">
+                                                <eq name="cfg_list['value']" value="0">
+                                                    <input type="radio" name="{$cfg_list.name}" id="{$cfg_list.name}_0" value="0" checked="true">
+                                                    <else/>
+                                                    <input type="radio" name="{$cfg_list.name}" id="{$cfg_list.name}_0" value="0">
+                                                </eq>
+                                                <eq name="cfg_list['name']" value="mail_service">
+                                                    {:L('mail_service_mail')}
+                                                    <else/>
+                                                    {:L('no')}
+                                                </eq>
+                                            </label>
+                                            <label for="{$cfg_list.name}_1">
+                                                <eq name="cfg_list['value']" value="1">
+                                                    <input type="radio" name="{$cfg_list.name}" id="{$cfg_list.name}_1" value="1" checked="true">
+                                                    <else/>
+                                                    <input type="radio" name="{$cfg_list.name}" id="{$cfg_list.name}_1" value="1">
+                                                </eq>
+                                                <eq name="cfg_list['name']" value="mail_service">
+                                                    {:L('mail_service_smtp')}
+                                                    <else/>
+                                                    {:L('yes')}
+                                                </eq>
+                                            </label>
+                                            <else/>
+                                            <input type="text" name="{$cfg_list.name}" value="{$cfg_list.value}" size="80" class="inpMain" />
+                                        </eq>
+
+                                        <if condition="$cfg_list['cue']">
+                                            <if condition="($cfg_list['type'] eq radio) OR ($cfg_list['type'] eq select)">
+                                                <span class="cue ml">{$cfg_list.cue}</span>
+                                                <else/>
+                                                <p class="cue">{$cfg_list.cue}</p>
+                                            </if>
+                                        </if>
+                                    </td>
+                                </tr>
+                            </volist>
+                        </table>
+                    </div>
+                    <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+                        <tr>
+                            <td width="131"></td>
+                            <td>
+                                <input name="submit" class="btn" type="submit" value="{:L('btn_submit')}" />
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</block>

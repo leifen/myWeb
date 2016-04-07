@@ -1,0 +1,26 @@
+<extend name="Public:common" />
+
+<block name="main">
+    <div class="mainBox">
+        <h3><a href="{$action_link.href}" class="actionBtn">{$action_link.text}</a>{$ur_here}</h3>
+
+        <div class="page">
+
+            <volist name="page_list" id="page_list">
+                <gt name="page_list['level']" value="0">
+                    <dl class="child{$page_list.level}">
+                <else/>
+                    <dl>
+                </gt>
+                <dt><strong>{$page_list.page_name}</strong><p>{$page_list.unique_id}</p></dt>
+                <dd>
+                    <a href="{:U('Page/edit',array('id'=>$page_list['id']))}">{:L('edit')}</a> |
+                    <a href="{:U('Page/destroy',array('id'=>$page_list['id']))}">{:L('del')}</a>
+                </dd>
+                </dl>
+            </volist>
+
+        </div>
+
+    </div>
+</block>

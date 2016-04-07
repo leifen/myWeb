@@ -1,0 +1,61 @@
+<extend name="Public:common" />
+
+<block name="head">
+    <load href="__JS__/jquery.tab.js"/>
+    <script type="text/javascript">
+        $(function(){ $(".idTabs").idTabs(); });
+    </script>
+</block>
+
+<block name="main">
+    <div class="mainBox">
+        <h3><a href="{$action_link.href}" class="actionBtn">{$action_link.text}</a>{$ur_here}</h3>
+
+
+        <div class="navList">
+            <ul class="tab">
+                <li>
+                    <eq name="type" value="middle">
+                        <a href="{:U('Nav/index')}" class="selected">{:L('nav_type_middle')}</a>
+                        <else/>
+                        <a href="{:U('Nav/index')}">{:L('nav_type_middle')}</a>
+                    </eq>
+                </li>
+                <li>
+                    <eq name="type" value="top">
+                        <a href="{:U('Nav/index',array('type'=>top))}" class="selected">{:L('nav_type_top')}</a>
+                        <else/>
+                        <a href="{:U('Nav/index',array('type'=>top))}">{:L('nav_type_top')}</a>
+                    </eq>
+                </li>
+                <li>
+                    <eq name="type" value="bottom">
+                        <a href="{:U('Nav/index',array('type'=>bottom))}" class="selected">{:L('nav_type_bottom')}</a>
+                        <else/>
+                        <a href="{:U('Nav/index',array('type'=>bottom))}">{:L('nav_type_bottom')}</a>
+                    </eq>
+                </li>
+            </ul>
+            <table width="100%" border="0" cellpadding="10" cellspacing="0" class="tableBasic">
+                <tr>
+                    <th width="113" align="center">{:L('nav_name')}</th>
+                    <th align="left">{:L('nav_link')}</th>
+                    <th width="80" align="center">{:L('sort')}</th>
+                    <th width="120" align="center">{:L('handler')}</th>
+                </tr>
+                <volist name="nav_list" id="nav_list">
+                    <tr>
+                        <td>{$nav_list.mark} {$nav_list.nav_name}</td>
+                        <td>{$nav_list.guide}</td>
+                        <td align="center">{$nav_list.sort}</td>
+                        <td align="center">
+                            <a href="{:U('Nav/edit',array('id'=>$nav_list['id']))}">{:L('edit')}</a> |
+                            <a href="{:U('Nav/destroy',array('id'=>$nav_list['id']))}">{:L('del')}</a>
+                        </td>
+                    </tr>
+                </volist>
+            </table>
+        </div>
+
+    </div>
+</block>

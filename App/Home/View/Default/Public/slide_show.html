@@ -1,0 +1,14 @@
+<div class="slideShow">
+    <ul class="slides">
+        <volist name="show_list" id="show">
+        <li><a href="{$show.show_link}" target="_blank" style="background-image:url(__ROOT__/{$show.show_img})"></a></li>
+        </volist>
+    </ul>
+</div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.slides').bxSlider({
+            mode: 'fade'
+        });
+    })
+</script>

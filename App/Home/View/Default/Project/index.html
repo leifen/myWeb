@@ -1,0 +1,64 @@
+<extend name="Public:common" />
+
+<block name="main">
+
+    <div class="wrap mb">
+        <div id="pageLeft">
+
+            <div class="treeBox">
+                <h3>{:L('project_tree')}</h3>
+                <ul>
+                    <volist name="project_category" id="cate">
+                        <if condition="$cate['cur']"><li class="cur"><else/><li> </if>
+                        <a href="{$cate.url}">{$cate.cat_name}</a>
+                        </li>
+                        <if condition="$cate['child']">
+                            <ul>
+                                <volist name="cate['child']" id="child">
+                                    <if condition="$child['cur']"><li class="cur"><else/><li> </if>
+                                    -<a href="{$child.url}">{$child.cat_name}</a>
+                                    </li>
+                                </volist>
+                            </ul>
+                        </if>
+                    </volist>
+                </ul>
+
+            </div>
+
+        </div>
+        <div id="pageIn">
+
+            <div class="urHere">{:L('ur_here')}：
+                <a href="{$config.root_url}">{:L('home')}</a><b>></b>
+                <a href="{$system_module.project_category}">{:L('project_category')}</a>
+                <if condition="$ur_here">
+                    <b>></b>{$ur_here}
+                </if>
+            </div>
+
+            <div id="article">
+                <h1>{$project.title}</h1>
+                <div class="info">{:L('add_time')}：{$project.add_time|date="Y-m-d",###} {:L('click')}：{$project.click}
+                    <if condition="!empty($project['defined'])">
+                        <volist name="project['defined']" id="defined">
+                            <li>{$defined.arr}：{$defined.value}</li>
+                        </volist>
+                    </if>
+                </div>
+                <div class="content"> {$project.content} </div>
+
+                <div class="lift">
+                    <if condition="$pre_next['pre']['id']">
+                         <span>{:L('project_previous')}：<a href="{$pre_next.pre.url}">{$pre_next.pre.title}</a></span>
+                    </if>
+                    <if condition="$pre_next['next']['id']">
+                         <span>{:L('project_next')}：<a href="{$pre_next.next.url}">{$pre_next.next.title}</a></span>
+                    </if>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+</block>

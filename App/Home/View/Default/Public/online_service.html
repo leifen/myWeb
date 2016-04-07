@@ -1,0 +1,23 @@
+<if condition="$config['qq']">
+    <div id="onlineService">
+        <div class="onlineIcon">{:L('online')}</div>
+        <div id="pop">
+            <ul class="onlineQQ">
+                <volist name="config['qq']" id="qq">
+                    <if condition="is_array($qq)">
+                    <a href="http://wpa.qq.com/msgrd?v=3&uin={$qq.number}&site=qq&menu=yes" target="_blank">{$qq.nickname}</a>
+                    <else/>
+                    <a href="http://wpa.qq.com/msgrd?v=3&uin={$qq}&site=qq&menu=yes" target="_blank">{:L('online_qq')}</a>
+                    </if>
+                </volist>
+            </ul>
+            <ul class="service">
+                <li>{:L('contact_tel')}<br />{$config.tel}</li>
+                <if condition="$system_module['guestbook']">
+                     <li><a href="{$system_module.guestbook}">{:L('guestbook_add')}</a></li>
+                </if>
+            </ul>
+        </div>
+        <p class="goTop"><a href="javascript:;" onfocus="this.blur();" class="goBtn"></a></p>
+    </div>
+</if>

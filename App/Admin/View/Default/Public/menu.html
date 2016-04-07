@@ -1,0 +1,50 @@
+<div id="menu">
+    <ul class="top">
+        <eq name="cur" value="index"> <li class="cur"> <else/><li></eq>
+            <a href="{:U('Index/index')}"><i class="home"></i> <em>{:L('menu_home')}</em></a></li></ul>
+    <ul>
+        <eq name="cur" value="system"> <li class="cur"> <else/><li></eq>
+            <a href="{:U('Config/index')}"><i class="system"></i><em>{:L('system')}</em></a>
+        </li>
+        <eq name="cur" value="nav"> <li class="cur"> <else/><li></eq>
+            <a href="{:U('Nav/index')}"><i class="nav"></i><em>{:L('nav')}</em></a>
+        </li>
+        <eq name="cur" value="show"> <li class="cur"> <else/><li></eq>
+            <a href="{:U('Show/index')}"><i class="show"></i><em>{:L('show')}</em></a>
+        </li>
+        <eq name="cur" value="page"> <li class="cur"> <else/><li></eq>
+             <a href="{:U('Page/index')}"><i class="page"></i><em>{:L('menu_page')}</em></a>
+        </li>
+    </ul>
+
+    <volist name="menu_list['column']" id="menu">
+
+    <ul>
+        <eq name="cur" value="$menu.name_category"> <li class="cur"> <else/><li></eq>
+             <a href='{$menu.url_category}'><i class="{$menu.name}Cat"></i><em>{$menu.lang_category}</em></a>
+        </li>
+        <eq name="cur" value="$menu.name"> <li class="cur"> <else/><li></eq>
+            <a href="{$menu.url}"><i class="{$menu.name}Cat"></i><em>{$menu.lang}</em></a>
+        </li>
+    </ul>
+    </volist>
+
+    <if condition="$menu_list['single']">
+    <ul>
+        <volist name="menu_list['single']" id="menu">
+            <eq name="cur" value="$menu.name"> <li class="cur"> <else/><li></eq>
+            <a href="{$menu.url}"><i class="{$menu.name}"></i><em>{$menu.lang}</em></a></li>
+            </li>
+        </volist>
+    </ul>
+    </if>
+
+    <ul class="bot">
+        <eq name="cur" value="manager"> <li class="cur"> <else/><li></eq>
+             <a href="{:U('Manager/index')}"><i class="manager"></i><em>{:L('manager')}</em></a>
+        </li>
+        <eq name="cur" value="manager_log"> <li class="cur"> <else/><li></eq>
+            <a href="{:U('Log/index')}"><i class="managerLog"></i><em>{:L('manager_log')}</em></a>
+        </li>
+    </ul>
+</div>

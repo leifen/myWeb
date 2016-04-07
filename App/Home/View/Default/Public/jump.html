@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>{:L('home')}--{$msgTitle}</title>
+<include file="Public/head"/>
+</head>
+<body>
+
+	<div id="wrapper">
+		<include file="Public:header" />
+		<div id="douMsg" class="wrap">
+			<dl>
+				<?php if ($status) {?>
+				<dt><?php echo($message); ?></dt>
+					<dd>
+						如果您不做出选择，将在 <a id="href" href="<?php echo($jumpUrl); ?>"><b id="wait"><?php echo($waitSecond); ?></b> </a> 秒后跳转到上一页面，您也可以手动点击
+						<a href="<?php echo($jumpUrl); ?>">{:L('msg_back')}</a>
+					</dd>
+				<?php } else { ?>
+				<dt><?php echo($error); ?></dt>
+					<dd>
+						如果您不做出选择，将在 <a id="href" href="<?php echo($jumpUrl); ?>"><b id="wait"><?php echo($waitSecond); ?></b> </a> 秒后跳转到上一页面，您也可以手动点击
+						<a href="<?php echo($jumpUrl); ?>">{:L('msg_back')}</a>
+					</dd>
+				<?php } ?>
+
+			</dl>
+		</div>
+		<include file="Public:online_service" />
+		<include file="Public:footer" />
+	</div>
+
+</body>
+<script type="text/javascript">
+	(function(){
+		var wait = document.getElementById('wait'),href = document.getElementById('href').href;
+		var interval = setInterval(function(){
+			var time = --wait.innerHTML;
+			if(time <= 0) {
+				location.href = href;
+				clearInterval(interval);
+			};
+		}, 1000);
+	})();
+</script>
+</html>

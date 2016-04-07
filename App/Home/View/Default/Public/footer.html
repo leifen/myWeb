@@ -1,0 +1,20 @@
+<div id="footer">
+    <div class="wrap">
+        <div class="footNav">
+            <volist name="nav_bottom_list" id="nav" key="k">
+            <a href="{$nav.url}">{$nav.nav_name}</a>
+            <if condition="$k neq count($nav_bottom_list)">
+                <i>|</i>
+            </if>
+            </volist>
+        </div>
+        <div class="copyRight">{$config.copyright} {:L('powered_by')}
+            <if condition="$config['icp']">
+            <a href="http://www.miibeian.gov.cn/" target="_blank">{$config.icp}</a>
+            </if>
+        </div>
+    </div>
+</div>
+<if condition="$config['code']">
+<div style="display:none">{$config.code}</div>
+</if>

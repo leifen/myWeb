@@ -1,0 +1,93 @@
+[ 2016-03-27T09:31:25+08:00 ] 127.0.0.1 /index.php/Admin/case_category/index.html
+ERR: 无法加载控制器:Case_category
+
+[ 2016-03-27T09:32:33+08:00 ] 127.0.0.1 /index.php/Admin/case_category/index.html
+ERR: 模板不存在:./App/Admin/View/Default/Case_category/index.html
+
+[ 2016-03-27T09:32:34+08:00 ] 127.0.0.1 /index.php/Admin/case_category/index.html
+ERR: 模板不存在:./App/Admin/View/Default/Case_category/index.html
+
+[ 2016-03-27T09:56:34+08:00 ] 127.0.0.1 /index.php/Admin/Case/index/cat_id/6.html
+ERR: 无法加载控制器:Case
+
+[ 2016-03-27T10:04:01+08:00 ] 127.0.0.1 /index.php/Admin/case/index.html
+ERR: 无法加载控制器:Case
+
+[ 2016-03-27T10:07:53+08:00 ] 127.0.0.1 /index.php/Admin/case/index.html
+ERR: 无法加载控制器:Case
+
+[ 2016-03-27T10:11:35+08:00 ] 127.0.0.1 /index.php/Admin/case/index.html
+ERR: Think\Model:case_count方法不存在！
+
+[ 2016-03-27T10:12:58+08:00 ] 127.0.0.1 /index.php/Admin/case/index.html
+ERR: Think\Model:case_count方法不存在！
+
+[ 2016-03-27T10:13:01+08:00 ] 127.0.0.1 /index.php/Admin/case/index.html
+ERR: Think\Model:case_count方法不存在！
+
+[ 2016-03-27T10:13:15+08:00 ] 127.0.0.1 /index.php/Admin/case/index.html
+ERR: Think\Model:case_count方法不存在！
+
+[ 2016-03-27T10:13:18+08:00 ] 127.0.0.1 /index.php/Admin/case/index.html
+ERR: Think\Model:case_count方法不存在！
+
+[ 2016-03-27T11:22:18+08:00 ] 127.0.0.1 /index.php/Admin/Case/index
+ERR: Think\Model:get_case_list方法不存在！
+
+[ 2016-03-27T11:41:25+08:00 ] 127.0.0.1 /index.php/Admin/Case/action.html
+ERR: Think\Model:del_case_all方法不存在！
+
+[ 2016-03-27T20:40:28+08:00 ] 127.0.0.1 /index.php/Admin/Case/edit/id/1.html
+ERR: 无法加载控制器:Case
+
+[ 2016-03-27T20:40:29+08:00 ] 127.0.0.1 /index.php/Admin/Case/edit/id/1.html
+ERR: 无法加载控制器:Case
+
+[ 2016-03-27T20:40:29+08:00 ] 127.0.0.1 /index.php/Admin/Case/edit/id/1.html
+ERR: 无法加载控制器:Case
+
+[ 2016-03-27T20:40:39+08:00 ] 127.0.0.1 /index.php/Admin/case/index.html
+ERR: 无法加载控制器:Case
+
+[ 2016-03-27T20:40:43+08:00 ] 127.0.0.1 /index.php/Admin/case_category/index.html
+ERR: 无法加载控制器:Case_category
+
+[ 2016-03-27T20:46:17+08:00 ] 127.0.0.1 /index.php/Admin/case_category/index.html
+ERR: Think\Model:get_category_list方法不存在！
+
+[ 2016-03-27T20:46:18+08:00 ] 127.0.0.1 /index.php/Admin/case_category/index.html
+ERR: Think\Model:get_category_list方法不存在！
+
+[ 2016-03-27T20:46:18+08:00 ] 127.0.0.1 /index.php/Admin/case_category/index.html
+ERR: Think\Model:get_category_list方法不存在！
+
+[ 2016-03-27T20:46:56+08:00 ] 127.0.0.1 /index.php/Admin/case_category/index.html
+ERR: Think\Model:get_category_list方法不存在！
+
+[ 2016-03-27T20:46:57+08:00 ] 127.0.0.1 /index.php/Admin/case_category/index.html
+ERR: Think\Model:get_category_list方法不存在！
+
+[ 2016-03-27T20:46:57+08:00 ] 127.0.0.1 /index.php/Admin/case_category/index.html
+ERR: Think\Model:get_category_list方法不存在！
+
+[ 2016-03-27T20:46:57+08:00 ] 127.0.0.1 /index.php/Admin/case_category/index.html
+ERR: Think\Model:get_category_list方法不存在！
+
+[ 2016-03-27T20:46:58+08:00 ] 127.0.0.1 /index.php/Admin/case_category/index.html
+ERR: Think\Model:get_category_list方法不存在！
+
+[ 2016-03-27T20:46:58+08:00 ] 127.0.0.1 /index.php/Admin/case_category/index.html
+ERR: Think\Model:get_category_list方法不存在！
+
+[ 2016-03-27T21:03:11+08:00 ] 127.0.0.1 /index.php/Admin/case/index.html
+ERR: Think\Model:get_case_list方法不存在！
+
+[ 2016-03-27T21:20:33+08:00 ] 127.0.0.1 /index.php/Admin/Case/edit/id/2.html
+ERR: Think\Model:get_one_case方法不存在！
+
+[ 2016-03-27T21:36:09+08:00 ] 127.0.0.1 /index.php/Admin/Case/re_thumb.html
+ERR: Think\Controller:auth方法不存在！
+
+[ 2016-03-27T21:36:32+08:00 ] 127.0.0.1 /index.php/Admin/Product/re_thumb.html
+ERR: Think\Controller:auth方法不存在！
+

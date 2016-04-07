@@ -1,0 +1,49 @@
+<extend name="Public:common" />
+
+<block name="head">
+    <load href="__JS__/jquery.tab.js"/>
+    <script type="text/javascript">
+        $(function(){ $(".idTabs").idTabs(); });
+    </script>
+</block>
+
+<block name="main">
+    <div class="mainBox">
+        <h3><a href="{$action_link.href}" class="actionBtn">{$action_link.text}</a>{$ur_here}</h3>
+
+        <div id="guestBook">
+            <dl class="book">
+                <dt>
+                    <a href="javascript:void(0)" onClick="dou_callback('{:U('GuestBook/show_hidden')}', 'id', {$guestbook.id}, 'if_show')" class="showHidden" id="if_show">
+                        <if condition="$guestbook['if_show']"><em class="d"><else/><em class="h"></if>
+                            <b>{:L('display')}</b>
+                            <s>{:L('hidden')}</s>
+                        </em>
+                    </a>{$guestbook.title}
+                </dt>
+                <dd>{$guestbook.content}</dd>
+                <p>
+                    <b>{:L('guestbook_name')}：{$guestbook.name}</b>
+                    <b>{:L('guestbook_contact_type')}（{$guestbook.contact_type}）：{$guestbook.contact}</b>
+                    <b>{:L('add_time')}：{$guestbook.add_time|date='Y-m-d',###}</b>
+                </p>
+            </dl>
+
+            <if condition="$reply['content']">
+                 <dl class="reply"><b>{:L('guestbook_admin_reply')}[{$reply.add_time|date='Y-m-d H:i:s',###}]：</b> {$reply.content}</dl>
+            <else/>
+                <dl class="replySubmit">
+                    <form action="{:U('GuestBook/reply')}" method="post">
+                        <textarea name="content" cols="90" rows="5" class="textArea" id="content"></textarea>
+                        <br>
+                        <input type="hidden" name="id" value="{$guestbook.id}">
+                        <input type="hidden" name="title" value="{$guestbook.title}">
+                        <input name="submit" class="btn" type="submit" value="{:L('guestbook_reply')}" />
+                    </form>
+                </dl>
+            </if>
+        </div>
+
+
+    </div>
+</block>

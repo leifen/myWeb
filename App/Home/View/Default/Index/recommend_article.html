@@ -1,0 +1,17 @@
+<if condition="$recommend_article">
+    <div class="incBox">
+        <h3><a href="{$system_module.article_category}">{:L('article_news')}</a></h3>
+        <ul class="recommendArticle">
+            <volist name="recommend_article" id="article" key="k">
+                <if condition="$k eq count($recommend_article)">
+                    <li class="last">
+                    <else/>
+                    <li>
+                </if>
+                    <b>{$article.add_time_short}</b>
+                    <a href="{$article.url}">{$article.title}</a>
+                </li>
+            </volist>
+        </ul>
+    </div>
+</if>

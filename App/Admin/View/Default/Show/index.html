@@ -1,0 +1,71 @@
+<extend name="Public:common" />
+
+<block name="main">
+
+    <div class="mainBox imgModule">
+        <h3>{$ur_here}</h3>
+        <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+            <tr>
+                <th>{:L('show_add')}</th>
+                <th>{:L('show_list')}</th>
+            </tr>
+            <tr>
+                <td width="350" valign="top">
+                    <form action="{:U('Show/insert')}" method="post" enctype="multipart/form-data">
+                    <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableOnebor">
+                        <tr>
+                            <td><b>{:L('show_name')}</b>
+                                <input type="text" name="show_name" size="20" class="inpMain" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>{:L('show_img')}</b>
+                                <input type="file" name="show_img" class="inpFlie" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>{:L('show_link')}</b>
+                                <input type="text" name="show_link"  size="40" class="inpMain" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>{:L('sort')}</b>
+                                <input type="text" name="sort"  size="20" class="inpMain" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input name="submit" class="btn" type="submit" value="{:L('btn_submit')}" />
+                            </td>
+                        </tr>
+                    </table>
+                    </form>
+                </td>
+
+                <td valign="top">
+                    <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableOnebor">
+                        <tr>
+                            <td width="100">{:L('show_name')}</td>
+                            <td></td>
+                            <td width="50" align="center">{:L('sort')}</td>
+                            <td width="80" align="center">{:L('handler')}</td>
+                        </tr>
+                        <volist name="show_list" id="show_list">
+                        <tr>
+
+                        <td><a href="__ROOT__/{$show_list.show_img}" target="_blank"><img src="__ROOT__/{$show_list.thumb}" width="100" /></a></td>
+                        <td>{$show_list.show_name}</td>
+                        <td align="center">{$show_list.sort}</td>
+                        <td align="center">
+                            <a href="{:U('Show/edit',array('id'=>$show_list['id']))}">{:L('edit')}</a> |
+                            <a href="{:U('Show/destroy',array('id'=>$show_list['id']))}">{:L('del')}</a>
+                        </td>
+                        </tr>
+                        </volist>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</block>

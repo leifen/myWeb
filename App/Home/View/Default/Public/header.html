@@ -1,0 +1,81 @@
+<div id="top">
+    <div class="wrap">
+        <ul class="topNav">
+            <volist name="nav_top_list" id="nav">
+                <if condition="$nav['child']">
+                    <li class="parent"><a href="{$nav.url}">{$nav.nav_name}<s></s></a>
+                        <ul>
+                            <volist name="nav['child']" id="child">
+                                <li><a href="{$child.url}">{$child.nav_name}</a></li>
+                            </volist>
+                        </ul>
+                    </li>
+                <else/>
+                    <li>
+                        <if condition="$nav['target']">
+                            <a href="{$nav.url}" target="_blank">
+                            <else/>
+                            <a href="{$nav.url}">
+                        </if>
+                            {$nav.nav_name}
+                        </a><s></s>
+                    </li>
+                </if>
+            </volist>
+            <li><a href="javascript:AddFavorite('{$config.root_url}', '{$config.site_name}')">{:L('add_favorite')}</a></li>
+        </ul>
+    </div>
+</div>
+
+<div id="header">
+    <div class="wrap clearfix">
+        <ul class="logo">
+            <a href="{$config.root_url}"><img src="__ROOT__/{$config.site_logo}" alt="{$config.site_name}" title="{$config.site_name}" /></a>
+        </ul>
+    </div>
+</div>
+<div id="mainNav">
+    <ul class="wrap">
+        <if condition="$index['cur']">
+            <li class="cur"><a href="{$config.root_url}" class="first">{:L('home')}</a></li>
+            <else/>
+            <li class=""><a href="{$config.root_url}" class="first">{:L('home')}</a></li>
+        </if>
+
+        <volist name="nav_middle_list" id="nav" key="k">
+            <if condition="$nav['cur']"><li class="cur hover"><else/><li class=""> </if>
+
+                <eq name="k" value="7">
+                    <a href="{$nav.url}" class="last">{$nav.nav_name}</a>
+                <else/>
+                    <a href="{$nav.url}">{$nav.nav_name}</a>
+                </eq>
+
+            <if condition="$nav['child']">
+                <ul>
+                    <volist name="nav['child']" id="child">
+                        <li>
+                            <if condition="$child['child']">
+                                <a href="{$child.url}" class="parent">{$child.nav_name}</a>
+                                <else/>
+                                <a href="{$child.url}" class="">{$child.nav_name}</a>
+                            </if>
+
+                            <if condition="$child['child']">
+                                <ul>
+                                    <volist name="child['child']" id="children">
+                                        <li><a href="{$children.url}">{$children.nav_name}</a></li>
+                                    </volist>
+                                </ul>
+                            </if>
+                        </li>
+                    </volist>
+                </ul>
+            </if>
+
+            </li>
+        </volist>
+        <div class="clear"></div>
+    </ul>
+</div>
+<!-- dcHead 结束 -->
