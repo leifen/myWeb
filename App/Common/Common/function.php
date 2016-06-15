@@ -136,7 +136,7 @@
                 $value['show_link'] =  $value['show_link'];
             }else {
                 if (empty($value['show_link'])) {
-                    $value['show_link'] = 'http://' . $_SERVER['HTTP_HOST'] . __ROOT__;
+                    $value['show_link'] = 'http://' ;
                 }
                 $value['show_link'] = 'http://' . $value['show_link'];
             }

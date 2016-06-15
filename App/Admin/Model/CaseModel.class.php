@@ -29,7 +29,7 @@ class CaseModel extends RelationModel{
     public function get_case_list($cat_id=null,$keyword=null,$pageSize=0)
     {
         //查找类别ID
-        $CaseCat = M('Case_category');
+        $CaseCat = M('CaseCategory');
         $data = $CaseCat->select();
         $cat_child_id = get_child_id($data,$cat_id);
         $cat_id = $cat_child_id . $cat_id;

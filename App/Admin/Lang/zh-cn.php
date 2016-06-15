@@ -174,7 +174,7 @@ return array(
     'site_closed' => '是否关闭网站',
     'icp' => 'ICP备案证书号',
     'tel' => '客服电话',
-    'fax' => '传真',
+    'fax' => '微信号码',
     'qq' => '客服QQ号码',
     'language' => '系统语言',
 //    'rewrite' => 'URL 重写',

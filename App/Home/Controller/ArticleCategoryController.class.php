@@ -13,7 +13,7 @@ class ArticleCategoryController extends BasicController{
     public function index($id=0)
     {
         $Nav = D('Nav');
-        $ArticleCat = D('Article_category');
+        $ArticleCat = D('ArticleCategory');
         $Article = D('Article');
 
         $this->page($Article->get_count($id),$this->config['display']['article']);   //加载分页

@@ -31,7 +31,7 @@ class ProjectModel extends Model{
     public function get_project_list($cat_id = 0, $pageSize)
     {
         //查找类别ID
-        $ProjectCat = M('Project_category');
+        $ProjectCat = M('ProjectCategory');
         $data = $ProjectCat->select();
         $cat_child_id = get_child_id($data,$cat_id);
         $cat_id = $cat_child_id . $cat_id;
@@ -61,7 +61,7 @@ class ProjectModel extends Model{
     public function get_count($cat_id = 0)
     {
         //查找类别ID
-        $ArticleCat = M('Article_category');
+        $ArticleCat = M('ArticleCategory');
         $data = $ArticleCat->select();
         $cat_child_id = get_child_id($data,$cat_id);
         $cat_id = $cat_child_id . $cat_id;

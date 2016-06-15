@@ -15,28 +15,28 @@ class ProductCategoryController extends BasicController{
      */
     public function index()
     {
-        $ProductCat = D('Product_category');
+        $ProductCat = D('ProductCategory');
         $this->assign('product_category',$ProductCat->get_category_list());
         $this->assign('cur','product_category');
         $this->assign('ur_here',L('product_category'));
-        $this->assign('action_link',array ( 'text' => L('product_category_add'),'href' => U('Product_category/create') ));
+        $this->assign('action_link',array ( 'text' => L('product_category_add'),'href' => U('ProductCategory/create') ));
         $this->display();
     }
 
     public function create()
     {
-        $ProductCat = D('Product_category');
+        $ProductCat = D('ProductCategory');
         $this->assign('product_category',$ProductCat->get_category_list());
         $this->assign('cur','product_category');
         $this->assign('ur_here',L('product_category_add'));
-        $this->assign('action_link',array ( 'text' => L('product_category'),'href' => U('Product_category/index') ));
+        $this->assign('action_link',array ( 'text' => L('product_category'),'href' => U('ProductCategory/index') ));
         $this->display();
     }
 
     public function insert()
     {
         if(IS_POST){
-            $ProductCat = D('Product_category');
+            $ProductCat = D('ProductCategory');
             $result = $ProductCat->insert(
                                         I('post.cat_name'),
                                         I('post.unique_id'),
@@ -63,19 +63,19 @@ class ProductCategoryController extends BasicController{
 
     public function edit($cat_id=null)
     {
-        $ProductCat = D('Product_category');
+        $ProductCat = D('ProductCategory');
         $this->assign('category',$ProductCat->get_one_category($cat_id));
         $this->assign('product_category',$ProductCat->get_category_list());
         $this->assign('cur','product_category');
         $this->assign('ur_here',L('product_category_edit'));
-        $this->assign('action_link',array ( 'text' => L('product_category'),'href' => U('Product_category/index') ));
+        $this->assign('action_link',array ( 'text' => L('product_category'),'href' => U('ProductCategory/index') ));
         $this->display();
     }
 
     public function update()
     {
         if(IS_POST){
-            $ProductCat = D('Product_category');
+            $ProductCat = D('ProductCategory');
             $result = $ProductCat->update(
                                             I('post.cat_id'),
                                             I('post.cat_name'),
@@ -103,7 +103,7 @@ class ProductCategoryController extends BasicController{
 
     public function destroy($cat_id)
     {
-        $ProductCat = D('Product_category');
+        $ProductCat = D('ProductCategory');
         $result = $ProductCat->destroy($cat_id);
         switch($result['status']){
             case -2 :
@@ -111,7 +111,7 @@ class ProductCategoryController extends BasicController{
                 break;
             default :
                 $this->log(L('product_category_del'),$result['cat_name']);
-                $this->success(L('del_succes'),U('Product_category/index'));
+                $this->success(L('del_succes'),U('ProductCategory/index'));
         }
     }
 

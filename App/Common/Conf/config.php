@@ -5,7 +5,7 @@ return array(
     'TMPL_TEMPLATE_SUFFIX'=>'.html',
     'DEFAULT_THEME'=>'Default',
 
-    'SHOW_PAGE_TRACE' =>true,
+//    'SHOW_PAGE_TRACE' =>true,
 
     'DB_TYPE'=>'mysql',
     'DB_HOST'=>'localhost',

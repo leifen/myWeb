@@ -12,9 +12,9 @@ class ProductCategoryController extends BasicController{
     public function index($id=0)
     {
         $Nav = D('Nav');
-        $ProductCat = D('Product_category');
+        $ProductCat = D('ProductCategory');
         $Product = D('Product');
-
+        
         $this->page($Product->get_count($id),$this->config['display']['product']);   //加载分页
         $this->assign('nav_top_list', $Nav->get_nav_list('top'));
         $this->assign('nav_middle_list', $Nav->get_nav_list('middle', '0', 'product_category', $id));

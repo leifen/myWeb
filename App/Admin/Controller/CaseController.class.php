@@ -13,7 +13,7 @@ class CaseController extends BasicController{
 
     public function index()
     {
-        $CaseCat = D('Case_category');
+        $CaseCat = D('CaseCategory');
         $Case = D('Case');
         $this->page($Case->case_count(),10);     //分页
 
@@ -33,7 +33,7 @@ class CaseController extends BasicController{
 
     public function create()
     {
-        $CaseCat = D('Case_category');
+        $CaseCat = D('CaseCategory');
 
         $defined_case = null;
         if ($this->config['defined']['case']) {
@@ -88,7 +88,7 @@ class CaseController extends BasicController{
 
     public function edit($id = null)
     {
-        $CaseCat = D('Case_category');
+        $CaseCat = D('CaseCategory');
         $Case = D('Case');
         $case = $Case->get_one_case($id);
 

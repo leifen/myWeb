@@ -12,28 +12,28 @@ class CaseCategoryController extends BasicController{
 
     public function index()
     {
-        $CaseCat = D('Case_category');
+        $CaseCat = D('CaseCategory');
         $this->assign('case_category',$CaseCat->get_category_list());
         $this->assign('cur','case_category');
         $this->assign('ur_here',L('case_category'));
-        $this->assign('action_link',array ( 'text' => L('case_category_add'),'href' => U('Case_category/create') ));
+        $this->assign('action_link',array ( 'text' => L('case_category_add'),'href' => U('CaseCategory/create') ));
         $this->display();
     }
 
     public function create()
     {
-        $CaseCat = D('Case_category');
+        $CaseCat = D('CaseCategory');
         $this->assign('case_category',$CaseCat->get_category_list());
         $this->assign('cur','case_category');
         $this->assign('ur_here',L('case_category_add'));
-        $this->assign('action_link',array ( 'text' => L('case_category'),'href' => U('Case_category/index') ));
+        $this->assign('action_link',array ( 'text' => L('case_category'),'href' => U('CaseCategory/index') ));
         $this->display();
     }
 
     public function insert()
     {
         if(IS_POST){
-            $CaseCat = D('Case_category');
+            $CaseCat = D('CaseCategory');
             $result = $CaseCat->insert(
                                         I('post.cat_name'),
                                         I('post.unique_id'),
@@ -60,19 +60,19 @@ class CaseCategoryController extends BasicController{
 
     public function edit($cat_id=null)
     {
-        $CaseCat = D('Case_category');
+        $CaseCat = D('CaseCategory');
         $this->assign('category',$CaseCat->get_one_category($cat_id));
         $this->assign('case_category',$CaseCat->get_category_list());
         $this->assign('cur','case_category');
         $this->assign('ur_here',L('case_category_edit'));
-        $this->assign('action_link',array ( 'text' => L('case_category'),'href' => U('Case_category/index') ));
+        $this->assign('action_link',array ( 'text' => L('case_category'),'href' => U('CaseCategory/index') ));
         $this->display();
     }
 
     public function update()
     {
         if(IS_POST){
-            $CaseCat = D('Case_category');
+            $CaseCat = D('CaseCategory');
             $result = $CaseCat->update(
                                             I('post.cat_id'),
                                             I('post.cat_name'),
@@ -100,7 +100,7 @@ class CaseCategoryController extends BasicController{
 
     public function destroy($cat_id)
     {
-        $CaseCat = D('Case_category');
+        $CaseCat = D('CaseCategory');
         $result = $CaseCat->destroy($cat_id);
         switch($result['status']){
             case -2 :
@@ -108,7 +108,7 @@ class CaseCategoryController extends BasicController{
                 break;
             default :
                 $this->log(L('case_category_del'),$result['cat_name']);
-                $this->success(L('del_succes'),U('Case_category/index'));
+                $this->success(L('del_succes'),U('CaseCategory/index'));
         }
     }
 

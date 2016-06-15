@@ -31,7 +31,7 @@ class ProductModel extends Model{
     public function get_product_list($cat_id = 0, $pageSize)
     {
         //查找类别ID
-        $ProductCat = M('Product_category');
+        $ProductCat = M('ProductCategory');
         $data = $ProductCat->select();
         $cat_child_id = get_child_id($data,$cat_id);
         $cat_id = $cat_child_id . $cat_id;
@@ -63,7 +63,7 @@ class ProductModel extends Model{
     public function get_count($cat_id = 0)
     {
         //查找类别ID
-        $ProductCat = M('Product_category');
+        $ProductCat = M('ProductCategory');
         $data = $ProductCat->select();
         $cat_child_id = get_child_id($data,$cat_id);
         $cat_id = $cat_child_id . $cat_id;

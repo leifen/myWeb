@@ -13,7 +13,7 @@ class ProductController extends BasicController{
 
     public function index()
     {
-        $ProductCat = D('Product_category');
+        $ProductCat = D('ProductCategory');
         $Product = D('Product');
         $this->page($Product->product_count(),10);     //分页
 
@@ -42,7 +42,7 @@ class ProductController extends BasicController{
      */
     public function create()
     {
-        $ProductCat = D('Product_category');
+        $ProductCat = D('ProductCategory');
 
         // 格式化自定义参数，并存到数组$product，商品编辑页面中调用商品详情也是用数组$product，
         $defined_product = null;
@@ -106,7 +106,7 @@ class ProductController extends BasicController{
      */
     public function edit($id = null)
     {
-        $ProductCat = D('Product_category');
+        $ProductCat = D('ProductCategory');
         $Product = D('Product');
         $product = $Product->get_one_product($id);
 

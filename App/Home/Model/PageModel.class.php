@@ -20,7 +20,7 @@ class PageModel extends Model{
         $map['id'] = 1;
         $result = $this->where($map)->find();
         $result['url'] = rewrite_url('page',$result['id']);
-        $result['content'] = mb_substr(htmlspecialchars_decode($result['content']),0,210,'utf-8');
+        $result['content'] = mb_substr(htmlspecialchars_decode($result['content']),0,1010,'utf-8');
         return $result;
     }
 
@@ -32,6 +32,7 @@ class PageModel extends Model{
         $map['id'] = $id;
         $result = $this->where($map)->find();
         $result['url'] = rewrite_url('page',$result['id']);
+        $result['content'] = htmlspecialchars_decode($result['content']);
         return $result;
     }
 

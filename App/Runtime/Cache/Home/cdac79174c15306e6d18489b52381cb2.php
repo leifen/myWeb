@@ -5,10 +5,10 @@
 <meta name="keywords" content="<?php echo ($config["site_keywords"]); ?>" />
 <meta name="description" content="<?php echo ($config["site_description"]); ?>" />
 <title><?php echo ($config["site_name"]); ?>- Powered by ThinkPHP</title>
-    <link rel="stylesheet" type="text/css" href="/myweb/Public/Home/css/style.css" />
-    <script type="text/javascript" src="/myweb/Public/Home/js/jquery.min.js"></script>
-    <script type="text/javascript" src="/myweb/Public/Home/js/global.js"></script>
-    <script type="text/javascript" src="/myweb/Public/Home/js/slide_show.js"></script>
+    <link rel="stylesheet" type="text/css" href="/Public/Home/css/style.css" />
+    <script type="text/javascript" src="/Public/Home/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/Public/Home/js/global.js"></script>
+    <script type="text/javascript" src="/Public/Home/js/slide_show.js"></script>
 
 </head>
 <body>
@@ -38,7 +38,7 @@
 <div id="header">
     <div class="wrap clearfix">
         <ul class="logo">
-            <a href="<?php echo ($config["root_url"]); ?>"><img src="/myweb/<?php echo ($config["site_logo"]); ?>" alt="<?php echo ($config["site_name"]); ?>" title="<?php echo ($config["site_name"]); ?>" /></a>
+            <a href="<?php echo ($config["root_url"]); ?>"><img src="/<?php echo ($config["site_logo"]); ?>" alt="<?php echo ($config["site_name"]); ?>" title="<?php echo ($config["site_name"]); ?>" /></a>
         </ul>
     </div>
 </div>
@@ -76,7 +76,7 @@
     <div id="index" class="wrap mb">
         <div class="slideShow">
     <ul class="slides">
-        <?php if(is_array($show_list)): $i = 0; $__LIST__ = $show_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$show): $mod = ($i % 2 );++$i;?><li><a href="<?php echo ($show["show_link"]); ?>" target="_blank" style="background-image:url(/myweb/<?php echo ($show["show_img"]); ?>)"></a></li><?php endforeach; endif; else: echo "" ;endif; ?>
+        <?php if(is_array($show_list)): $i = 0; $__LIST__ = $show_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$show): $mod = ($i % 2 );++$i;?><li><a href="<?php echo ($show["show_link"]); ?>" target="_blank" style="background-image:url(/<?php echo ($show["show_img"]); ?>)"></a></li><?php endforeach; endif; else: echo "" ;endif; ?>
     </ul>
 </div>
 <script type="text/javascript">
@@ -99,15 +99,15 @@
         </ul>
     </div><?php endif; endif; ?>
             <div class="incBox">
-    <h3><?php echo ($about["page_name"]); ?></h3>
+    <h3><a href="<?php echo ($about["url"]); ?>" class="aboutBtn"><?php echo ($about["page_name"]); ?></a></h3>
     <div class="about">
-        <p><img src="/myweb/Public/Home/images/img_company.jpg" /></p>
+        <p><img src="/Public/Home/images/img_company.jpg" /></p>
         <dl>
-            <dt><?php echo ($config["site_name"]); ?></dt>
+            <!--<dt><?php echo ($config["site_name"]); ?></dt>-->
             <dd><?php echo ($about["content"]); ?></dd>
         </dl>
         <div class="clear"></div>
-        <a href="<?php echo ($about["url"]); ?>" class="aboutBtn"><?php echo L('about_link'); echo ($about["page_name"]); ?></a>
+
     </div>
 </div>
         </div>
@@ -128,7 +128,7 @@
     <div class="box">
         <dl><dt class="address"></dt><dd><?php echo L('contact_address');?>：<?php echo ($config["site_address"]); ?></dd></dl>
         <dl><dt class="tel"></dt><dd><?php echo L('contact_tel');?>：<?php echo ($config["tel"]); ?></dd></dl>
-        <dl><dt class="fax"></dt><dd><?php echo L('contact_fax');?>：<?php echo ($config["fax"]); ?></dd></dl>
+        <dl><dt class="fax"></dt><dd><?php echo L('contact_wechat');?>：<?php echo ($config["fax"]); ?></dd></dl>
         <dl><dt class="url"></dt><dd><?php echo L('contact_root_url');?>：<?php echo ($config["root_url"]); ?></dd></dl>
         <dl><dt class="email"></dt><dd><?php echo L('contact_email');?>：<?php echo ($config["email"]); ?></dd></dl>
     </div>
@@ -139,8 +139,6 @@
         <div class="clear"></div>
     </div>
     <?php if($system_module['open']['link']): endif; ?>
-
-
 
 
     <?php if($config['qq']): ?><div id="onlineService">

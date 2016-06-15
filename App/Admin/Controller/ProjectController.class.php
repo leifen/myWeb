@@ -13,7 +13,7 @@ class ProjectController extends BasicController{
 
     public function index()
     {
-        $ProjectCat = D('Project_category');
+        $ProjectCat = D('ProjectCategory');
         $Project = D('Project');
         $this->page($Project->project_count(),10);     //分页
 
@@ -35,7 +35,7 @@ class ProjectController extends BasicController{
      */
     public function create()
     {
-        $ProjectCat = D('Project_category');
+        $ProjectCat = D('ProjectCategory');
 
         // 格式化自定义参数，并存到数组$project，方案编辑页面中调用方案详情也是用数组$project，
         $defined_project = null;
@@ -96,7 +96,7 @@ class ProjectController extends BasicController{
      */
     public function edit($id = null)
     {
-        $ProjectCat = D('Project_category');
+        $ProjectCat = D('ProjectCategory');
 
         $Project = D('Project');
         $project = $Project->get_one_project($id);

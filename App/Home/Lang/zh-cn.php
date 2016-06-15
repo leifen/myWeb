@@ -37,14 +37,14 @@ return array(
 //
 //    // 公司简介
 //    'about' => '公司简介',
-    'about_link' => '查看详细',
+    'about_link' => '更多',
     'about_tree' => '公司信息',
 //
 //    // 联系我们
     'contact' => '联系我们',
     'contact_address' => '公司地址',
     'contact_tel' => '销售热线',
-    'contact_fax' => '传真号码',
+    'contact_fax' => '微信号码',
     'contact_root_url' => '公司网址',
     'contact_email' => '电子邮箱',
 //

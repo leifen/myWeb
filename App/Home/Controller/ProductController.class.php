@@ -12,7 +12,7 @@ class ProductController extends BasicController{
     public function index($id=0)
     {
         $Nav = D('Nav');
-        $ProductCat = D('Product_category');
+        $ProductCat = D('ProductCategory');
         $Product = D('Product');
         $product = $Product->get_one_product($id,$this->config);
 

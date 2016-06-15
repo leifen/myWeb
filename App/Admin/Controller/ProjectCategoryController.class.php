@@ -11,28 +11,28 @@ class ProjectCategoryController extends BasicController{
 
     public function index()
     {
-        $ProjectCat = D('Project_category');
+        $ProjectCat = D('ProjectCategory');
         $this->assign('project_category',$ProjectCat->get_category_list());
         $this->assign('cur','project_category');
         $this->assign('ur_here',L('project_category'));
-        $this->assign('action_link',array ( 'text' => L('project_category_add'),'href' => U('Project_category/create') ));
+        $this->assign('action_link',array ( 'text' => L('project_category_add'),'href' => U('ProjectCategory/create') ));
         $this->display();
     }
 
     public function create()
     {
-        $ProjectCat = D('Project_category');
+        $ProjectCat = D('ProjectCategory');
         $this->assign('project_category',$ProjectCat->get_category_list());
         $this->assign('cur','project_category');
         $this->assign('ur_here',L('project_category_add'));
-        $this->assign('action_link',array ( 'text' => L('project_category'),'href' => U('Project_category/index') ));
+        $this->assign('action_link',array ( 'text' => L('project_category'),'href' => U('ProjectCategory/index') ));
         $this->display();
     }
 
     public function insert()
     {
         if(IS_POST){
-            $ProjectCat = D('Project_category');
+            $ProjectCat = D('ProjectCategory');
             $result = $ProjectCat->insert(
                                             I('post.cat_name'),
                                             I('post.unique_id'),
@@ -59,19 +59,19 @@ class ProjectCategoryController extends BasicController{
 
     public function edit($cat_id=null)
     {
-        $ProjectCat = D('Project_category');
+        $ProjectCat = D('ProjectCategory');
         $this->assign('category',$ProjectCat->get_one_category($cat_id));
         $this->assign('project_category',$ProjectCat->get_category_list());
         $this->assign('cur','project_category');
         $this->assign('ur_here',L('project_category_edit'));
-        $this->assign('action_link',array ( 'text' => L('project_category'),'href' => U('Project_category/index') ));
+        $this->assign('action_link',array ( 'text' => L('project_category'),'href' => U('ProjectCategory/index') ));
         $this->display();
     }
 
     public function update()
     {
         if(IS_POST){
-            $ProjectCat = D('Project_category');
+            $ProjectCat = D('ProjectCategory');
             $result = $ProjectCat->update(
                                             I('post.cat_id'),
                                             I('post.cat_name'),
@@ -99,7 +99,7 @@ class ProjectCategoryController extends BasicController{
 
     public function destroy($cat_id)
     {
-        $ProjectCat = D('Project_category');
+        $ProjectCat = D('ProjectCategory');
         $result = $ProjectCat->destroy($cat_id);
         switch($result['status']){
             case -2 :
@@ -107,7 +107,7 @@ class ProjectCategoryController extends BasicController{
                 break;
             default :
                 $this->log(L('project_category_del'),$result['cat_name']);
-                $this->success(L('del_succes'),U('Project_category/index'));
+                $this->success(L('del_succes'),U('ProjectCategory/index'));
         }
     }
 

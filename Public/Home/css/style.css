@@ -1725,6 +1725,7 @@ color:transparent!important
 }
 #footer .copyRight {
  font-family: Arial, Lucida, Verdana, Helvetica, sans-serif;
+ text-align:center;
 }
 
 .pager {

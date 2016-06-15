@@ -13,7 +13,7 @@ class ArticleController extends BasicController{
 
     public function index()
     {
-        $ArticleCat = D('Article_category');
+        $ArticleCat = D('ArticleCategory');
         $Article = D('Article');
         $this->page($Article->article_count(),10);     //分页
 
@@ -42,7 +42,7 @@ class ArticleController extends BasicController{
      */
     public function create()
     {
-        $ArticleCat = D('Article_category');
+        $ArticleCat = D('ArticleCategory');
 
         // 格式化自定义参数，并存到数组$product，商品编辑页面中调用商品详情也是用数组$product，
         $defined_article = null;
@@ -103,7 +103,7 @@ class ArticleController extends BasicController{
      */
     public function edit($id = null)
     {
-        $ArticleCat = D('Article_category');
+        $ArticleCat = D('ArticleCategory');
 
         $Article = D('Article');
         $article = $Article->get_one_article($id);

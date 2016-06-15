@@ -12,7 +12,7 @@ class CaseController extends BasicController{
     public function index($id=0)
     {
         $Nav = D('Nav');
-        $CaseCat = D('Case_category');
+        $CaseCat = D('CaseCategory');
         $Case = D('Case');
         $case = $Case->get_one_case($id,$this->config);
 

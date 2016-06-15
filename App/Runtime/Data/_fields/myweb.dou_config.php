@@ -1,0 +1,1 @@
+a:7:{i:0;s:4:"name";i:1;s:5:"value";i:2;s:4:"type";i:3;s:3:"box";i:4;s:3:"tab";i:5;s:4:"sort";s:5:"_type";a:6:{s:4:"name";s:11:"varchar(80)";s:5:"value";s:4:"text";s:4:"type";s:11:"varchar(10)";s:3:"box";s:12:"varchar(255)";s:3:"tab";s:11:"varchar(10)";s:4:"sort";s:19:"tinyint(3) unsigned";}}

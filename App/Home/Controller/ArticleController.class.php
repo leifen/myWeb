@@ -13,7 +13,7 @@ class ArticleController extends BasicController{
     public function index($id=0)
     {
         $Nav = D('Nav');
-        $ArticleCat = D('Article_category');
+        $ArticleCat = D('ArticleCategory');
         $Article = D('Article');
 
         $article = $Article->get_one_article($id);

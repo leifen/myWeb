@@ -11,28 +11,28 @@ class ArticleCategoryController extends BasicController{
 
     public function index()
     {
-        $ArticleCat = D('Article_category');
+        $ArticleCat = D('ArticleCategory');
         $this->assign('article_category',$ArticleCat->get_category_list());
         $this->assign('cur','article_category');
         $this->assign('ur_here',L('article_category'));
-        $this->assign('action_link',array ( 'text' => L('article_category_add'),'href' => U('Article_category/create') ));
+        $this->assign('action_link',array ( 'text' => L('article_category_add'),'href' => U('ArticleCategory/create') ));
         $this->display();
     }
 
     public function create()
     {
-        $ArticleCat = D('Article_category');
+        $ArticleCat = D('ArticleCategory');
         $this->assign('article_category',$ArticleCat->get_category_list());
         $this->assign('cur','article_category');
         $this->assign('ur_here',L('article_category_add'));
-        $this->assign('action_link',array ( 'text' => L('article_category'),'href' => U('Article_category/index') ));
+        $this->assign('action_link',array ( 'text' => L('article_category'),'href' => U('ArticleCategory/index') ));
         $this->display();
     }
 
     public function insert()
     {
         if(IS_POST){
-            $ArticleCat = D('Article_category');
+            $ArticleCat = D('ArticleCategory');
             $result = $ArticleCat->insert(
                                             I('post.cat_name'),
                                             I('post.unique_id'),
@@ -59,19 +59,19 @@ class ArticleCategoryController extends BasicController{
 
     public function edit($cat_id=null)
     {
-        $ArticleCat = D('Article_category');
+        $ArticleCat = D('ArticleCategory');
         $this->assign('category',$ArticleCat->get_one_category($cat_id));
         $this->assign('article_category',$ArticleCat->get_category_list());
         $this->assign('cur','article_category');
         $this->assign('ur_here',L('article_category_edit'));
-        $this->assign('action_link',array ( 'text' => L('article_category'),'href' => U('Article_category/index') ));
+        $this->assign('action_link',array ( 'text' => L('article_category'),'href' => U('ArticleCategory/index') ));
         $this->display();
     }
 
     public function update()
     {
         if(IS_POST){
-            $ArticleCat = D('Article_category');
+            $ArticleCat = D('ArticleCategory');
             $result = $ArticleCat->update(
                                             I('post.cat_id'),
                                             I('post.cat_name'),
@@ -99,7 +99,7 @@ class ArticleCategoryController extends BasicController{
 
     public function destroy($cat_id)
     {
-        $ArticleCat = D('Article_category');
+        $ArticleCat = D('ArticleCategory');
         $result = $ArticleCat->destroy($cat_id);
         switch($result['status']){
             case -2 :
@@ -107,7 +107,7 @@ class ArticleCategoryController extends BasicController{
                 break;
             default :
                 $this->log(L('article_category_del'),$result['cat_name']);
-                $this->success(L('del_succes'),U('Article_category/index'));
+                $this->success(L('del_succes'),U('ArticleCategory/index'));
         }
     }
 

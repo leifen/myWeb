@@ -12,7 +12,7 @@ class CaseCategoryController extends BasicController{
     public function index($id=0)
     {
         $Nav = D('Nav');
-        $CaseCat = D('Case_category');
+        $CaseCat = D('CaseCategory');
         $Case = D('Case');
 
         $this->page($Case->get_count($id),$this->config['display']['product']);   //加载分页

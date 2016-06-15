@@ -13,7 +13,7 @@ class ProjectCategoryController extends BasicController{
     public function index($id=0)
     {
         $Nav = D('Nav');
-        $ProjectCat = D('Project_category');
+        $ProjectCat = D('ProjectCategory');
         $Project = D('Project');
 
         $this->page($Project->get_count($id),$this->config['display']['article']);   //加载分页
